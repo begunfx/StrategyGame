@@ -26,7 +26,7 @@ import random
 def getChoice():
   choice = requestString("What is your next destination choice?")
   return choice          
-=======
+
               
 #Randomize int numbers to pick room to hide plans in
 #Also use to determine what room leads to secret room
