@@ -22,8 +22,15 @@
 import random
 
 # get choice function
-def getChoice():
-  choice = requestString("What is your next destination choice?")
+def getChoice(num):
+  if num == 1:
+    choice = requestString("What is the number of your next destination choice?")
+  if num == 2:
+    choice = requestString("Do you want to pick up the plans? y or n")
+  if num == 3:
+    choice = requestString("Do you want to rescue the Princess? y or n")
+  if num == 4:
+    choice = requestString("Do you want to quit the game? y or n")
   return choice          
 
               
