@@ -17,6 +17,7 @@
 #Look for the secret plants to the Death Star
 #Find the Princess (Who is locked up on the Death Star
 #Escape before you run our of turns!
+<<<<<<< HEAD
 
 #Put all imports here please
 import random
@@ -25,6 +26,7 @@ import random
 def getChoice():
   choice = requestString("What is your next destination choice?")
   return choice          
+=======
               
 #Randomize int numbers to pick room to hide plans in
 #Also use to determine what room leads to secret room
