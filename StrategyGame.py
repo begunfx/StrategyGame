@@ -17,5 +17,4 @@
 #Look for the secret plants to the Death Star
 #Find the Princess (Who is locked up on the Death Star
 #Escape before you run our of turns!
-# get choice function
               
