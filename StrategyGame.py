@@ -47,15 +47,19 @@ def randomizeRooms():
     deathStarRoom = random.randint(2, 8)
    
   return (plansRoom, deathStarRoom)
+
 # initialize gameState array
 plansRoom, deathStarRoom = randomizeRooms()
 gameState = [false,false,6,plansRoom,deathStarRoom]
+
 # start game
 room1(gameState)
+
 # exit function
 def exit():
   printNow("Loser, The Force was not with you!!!")
   return
+
 # get choice function
 def getChoice(num):
   if num == 1:
@@ -67,6 +71,7 @@ def getChoice(num):
   if num == 4:
     choice = requestString("Do you want to quit the game? Type X to quit")
   return choice
+
 #############################################
 # room one (Naboo) function #################
 #############################################
@@ -121,6 +126,7 @@ def room1(gameState):
     else:
       printNow("You cannot get to destination "+ chc +" from here, Try 2, 3, or 4.")
       check = true
+
 #################################################
 # room two (Coruscant) function #################
 #################################################
