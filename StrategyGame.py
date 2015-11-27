@@ -46,4 +46,4 @@ def randomizeRooms():
   while plansRoom == deathStarRoom:
     deathStarRoom = random.randint(2, 8)
    
-  return (plansRoom, deathStarRoom
+  return (plansRoom, deathStarRoom)
