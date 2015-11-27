@@ -117,7 +117,7 @@ def room1(gameState):
     elif choice == 3: # for Tatooine
       check = false
       room3(gameState)
-    elif choice == 4: # for Alderan
+    elif choice == 4: # for Alderaan
       check = false
       room4(gameState)
     elif chc == "x":
@@ -171,7 +171,7 @@ def room2(gameState):
     if choice == 1: # for Naboo
       check = false
       room1(gameState)
-    elif choice == 4: # for Alderan
+    elif choice == 4: # for Alderaan
       check = false
       room4(gameState)
     elif choice == 5: # for Hoth
