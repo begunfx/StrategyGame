@@ -30,6 +30,8 @@ def getChoice():
 #Randomize int numbers to pick room to hide plans in
 #Also use to determine what room leads to secret room
 #Hard coded range: 2-8
-def randomizeRoom():
-  randomNum = random.randint(2, 8)
-  return (randomNum)
+def randomizeRooms():
+  plansRoom = random.randint(2, 8)
+  deathStarRoom = random.randint(2, 8)
+  
+  return (plansRoom, deathStarRoom)
