@@ -21,7 +21,7 @@
 #Put all imports here please
 import random
 
-# get choice function
+# get choice function - usersChoice = getChoice(1) for destination number ect
 def getChoice(num):
   if num == 1:
     choice = requestString("What is the number of your next destination choice?")
