@@ -432,7 +432,7 @@ def userChoice(roomState, gameState, currentRoom):
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
         
-def whereAmI(roomState, currentRoom):
+def whereAmI(gameState, roomState, currentRoom):
   options = ""
   roomDescrip = ""
   action = ""
@@ -509,16 +509,15 @@ def dialog(roomState, gameState, currentRoom):
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
     
-  options = whereAmI(roomState, currentRoom)[0]
-  roomDescrip = whereAmI(roomState, currentRoom)[1]
-  action = whereAmI(roomState, currentRoom)[2]
+  options = whereAmI(gameState, roomState, currentRoom)[0]
+  roomDescrip = whereAmI(gameState, roomState, currentRoom)[1]
+  action = whereAmI(gameState, roomState, currentRoom)[2]
   textDisplay =  roomDescrip + action + options
   
   printNow(textDisplay)  
 
 
 def tatooine(gameState):
-
   currentRoom = 3
   roomState = 'tatooine'
   #plansRoom, deathStarRoom = randomizeRooms()
@@ -559,4 +558,3 @@ def tatooine(gameState):
       if gameState[1] == 1:
         gameState[2] -= 1
       return
-    
