@@ -68,7 +68,7 @@ def naboo(gameState):
   printNow (rmDesc)
   if(gameState[0]==true and gameState[1]==true): ########## has plans and princess and has reached exit, game is won #############
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
-	printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
+    printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
     printNow("\nThe Force is with with you!!!\n")
     check = false
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
@@ -86,8 +86,8 @@ def naboo(gameState):
     if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-	else:
-	  printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
+    else:
+      printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     dthStrFnd = "\nHowever, you notice that everyone has become extremely nervous\n"
@@ -99,8 +99,8 @@ def naboo(gameState):
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-	else:
-	  printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
+    else:
+      printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
   while check == true:
     dstChc = "What is your destination choice?\n"
@@ -109,7 +109,7 @@ def naboo(gameState):
     dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
-	if chc.isdigit():
+    if chc.isdigit():
       chc = str(chc)
     choice = chc.lower()
     if choice == "coruscant": # for Coruscant
@@ -147,7 +147,7 @@ def coruscant(gameState):
   if(gameState[0]==true and gameState[1]==true): #has plans and princess, this is not the exit, keep trying if you can.
     gameState[2] -= 1
     if gameState[2] > 1:
-      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n")
     elif gameState[2] == 1:
       printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
     if gameState[2] == 0:
@@ -167,8 +167,8 @@ def coruscant(gameState):
     if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-	else:
-	  printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
+    else:
+      printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     dthStrFnd = "\nHowever, you notice that everyone has become extremely nervous\n"
     dthStrFnd += "and you ask why. It turns out that the Death Star has been \n"
@@ -179,8 +179,8 @@ def coruscant(gameState):
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-	else:
-	  printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
+    else:
+      printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
   while check == true:
     dstChc = "What is your destination choice?\n"
