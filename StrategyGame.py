@@ -66,25 +66,41 @@ def naboo(gameState):
   rmDesc += "a group of peaceful humans who are referred to as the Naboo.\n" 
   rmDesc += "Destination choices are: \n Coruscant, Tatooine, Alderaan, or EXIT to quit.\n"
   printNow (rmDesc)
-  if(gameState[0]==true and gameState[1]==true): #has plans and princess
+  if(gameState[0]==true and gameState[1]==true): ########## has plans and princess and has reached exit, game is won #############
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
 	printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
     printNow("\nThe Force is with with you!!!\n")
     check = false
+  ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
-    printNow("\nYou have found the plan room, please take plans to save the Princess!")
-    picPln = requestString("Do you want to pick up the plans? yes or no")
+    fndPlns = "\nHowever, before you take off, Valenthyne Farfalla\n"
+    fndPlns += "catches up to tell you that the Bothans have succeeded in\n"
+    fndPlns += "bribing a high-ranking Imperial officer into allowing them\n"
+    fndPlns += "to infiltrate a slicer droid into the Coruscant computer network\n"
+    fndPlns += "and have located and copied the plans of the Death Star layout.\n"
+    fndPlns += "He has just arrived at Naboo to give you the plans personally.\n"
+    fndPlns += "He asks you to take them to use in your mission to rescue Princess Leia.\n\n"
+    printNow(fndPlns)
+    picPln = requestString("Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n")
     picPln = picPln.lower()
-    if picPln == "yes":
+    if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
+	else:
+	  printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
+  ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
-    printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = requestString("Do you want to go to the DeathStar to rescue the Princess? yes or no")
+    dthStrFnd = "\nHowever, you notice that everyone has become extremely nervous\n"
+    dthStrFnd += "and you ask why. It turns out that the Death Star has been \n"
+    dthStrFnd += "orbiting for the past several hours. You can finally\n"
+    dthStrFnd += "rescue Princess Leia!\n\n"
+    printNow(dthStrFnd)    
+    svPrncs = requestString("Type \"Save Princess\" to jump to the Death Star and rescue Leia\n")
     svPrncs = svPrncs.lower()
-    if svPrncs == "yes": # if they want to save princess
-      gameState[1] = true
-      printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
+    if svPrncs == "save princess": # if they want to save princess
+      deathStar(gameState)
+	else:
+	  printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
   while check == true:
     dstChc = "What is your destination choice?\n"
@@ -128,7 +144,7 @@ def coruscant(gameState):
   rmDesc += "the most politically important world in the galaxy.\n" 
   rmDesc += "Destination choices are: \nNaboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.\n"
   printNow(rmDesc)
-  if(gameState[0]==true and gameState[1]==true): #has plans and princess
+  if(gameState[0]==true and gameState[1]==true): #has plans and princess, this is not the exit, keep trying if you can.
     gameState[2] -= 1
     if gameState[2] > 1:
       printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
