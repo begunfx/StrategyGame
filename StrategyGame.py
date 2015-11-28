@@ -31,20 +31,7 @@ def starWars():
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
   naboo(gameState)
-
-# get choice function - usersChoice = getChoice(1) for destination number ect
-def getChoice(num):
-  if num == 1:
-    choice = requestString("What is the number of your next destination choice?")
-  if num == 2:
-    choice = requestString("Do you want to pick up the plans? y or n")
-  if num == 3:
-    choice = requestString("Do you want to rescue the Princess? y or n")
-  if num == 4:
-    choice = requestString("Do you want to quit the game? y or n")
-  return choice          
-
-              
+             
 #Randomize int numbers to pick room to hide plans in
 #Hard coded range: 2-8
 #IMPORTANT NOTE: To use this in your function put the following line of code in there
@@ -63,30 +50,26 @@ def randomizeRooms():
 plansRoom, deathStarRoom = randomizeRooms()
 gameState = [false,false,6,plansRoom,deathStarRoom]
 
-# start game
-room1(gameState)
-
 # exit function
 def exit():
   printNow("Loser, The Force was not with you!!!")
   return
-
-# get choice function
+# get choice function - usersChoice = getChoice(1) for destination number ect
 def getChoice(num):
   if num == 1:
-    choice = requestString("What is the number of your next destination choice? ")
+    choice = requestString("What is the number of your next destination choice? or type exit to quit")
   if num == 2:
-    choice = requestString("Do you want to pick up the plans? y or n")
+    choice = requestString("Do you want to pick up the plans? yes or no")
   if num == 3:
-    choice = requestString("Do you want to rescue the Princess? y or n")
+    choice = requestString("Do you want to rescue the Princess? yes or no")
   if num == 4:
-    choice = requestString("Do you want to quit the game? Type X to quit")
+    choice = requestString("Do you want to quit the game? Type exit to quit")
   return choice
 
 #############################################
 # room one (Naboo) function #################
 #############################################
-def room1(gameState):
+def naboo(gameState):
   check = true
   ################### Introduction ####################
   rmDesc = "------------ Naboo Spaceport -----------\n"
@@ -96,7 +79,7 @@ def room1(gameState):
   rmDesc += "It is inhabited by two societies - an indigenous\n"
   rmDesc += "species of intelligent amphibians called the Gungans, and\n"
   rmDesc += "a group of peaceful humans who are referred to as the Naboo.\n" 
-  rmDesc += "Destination choices are: \n2 for Coruscant, 3 for Tatooine, 4 for Alderaan, or X for exit.\n"
+  rmDesc += "Destination choices are: \n Coruscant, Tatooine, Alderaan, or X for exit.\n"
   printNow (rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
@@ -105,33 +88,29 @@ def room1(gameState):
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess!")
     picPln = getChoice(2).lower()
-    if picPln == "y":
+    if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
     svPrncs = getChoice(3).lower()
-    if svPrncs == "y": # if they want to save princess
+    if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
     chc = getChoice(1)
-    choice = 0
-    if chc.isdigit():
-      choice = int(chc)
-    else:
-      chc = chc.lower()
-    if choice == 2: # for Coruscant
+    chc = chc.lower()
+    if choice == "coruscant": # for Coruscant
       check = false
       room2(gameState)
-    elif choice == 3: # for Tatooine
+    elif choice == "tatooine": # for Tatooine
       check = false
       room3(gameState)
-    elif choice == 4: # for Alderaan
+    elif choice == "alderaan": # for Alderaan
       check = false
       room4(gameState)
-    elif chc == "x":
+    elif chc == "exit":
       exit()
       check = false
     else:
@@ -141,7 +120,7 @@ def room1(gameState):
 #################################################
 # room two (Coruscant) function #################
 #################################################
-def room2(gameState):
+def coruscant(gameState):
   check = true
   ################### Introduction ####################
   rmDesc = "------------ Coruscant Spaceport -----------\n"
@@ -152,8 +131,8 @@ def room2(gameState):
   rmDesc += "It is a planet located in the Galactic Core.\n"
   rmDesc += "It is generally agreed that Coruscant is\n"
   rmDesc += "the most politically important world in the galaxy.\n" 
-  rmDesc += "Destination choices are: \n1 for Naboo, 4 for Alderaan, 5 for Hoth, 6 for Dagobah, or X for exit.\n"
-  printNow (rmDesc)
+  rmDesc += "Destination choices are: \nNaboo, Alderaan, Hoth, Dagobah, or exit to quit.\n"
+  printNow(rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
     gameState[2] -= 1 # this is not exit so subtract 1
     if gameState[2]<=0:
@@ -162,36 +141,32 @@ def room2(gameState):
   if(gameState[3]==2 and gameState[1]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess")
     picPln = getChoice(2).lower()
-    if picPln == "y":
+    if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
     svPrncs = getChoice(3).lower()
-    if svPrncs == "y": # if they want to save princess
+    if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
     chc = getChoice(1)
-    choice = 0
-    if chc.isdigit():
-      choice = int(chc)
-    else:
-      chc = chc.lower()
-    if choice == 1: # for Naboo
+    chc = chc.lower()
+    if choice == "naboo": # for Naboo
       check = false
-      room1(gameState)
-    elif choice == 4: # for Alderaan
+      naboo(gameState)
+    elif choice == "alderaan": # for Alderaan
       check = false
-      room4(gameState)
-    elif choice == 5: # for Hoth
+      alderaan(gameState)
+    elif choice == "hoth": # for Hoth
       check = false
-      room5(gameState)
-    elif choice == 6: # for Dagobah
+      hoth(gameState)
+    elif choice == "dagobah": # for Dagobah
       check = false
-      room6(gameState)
-    elif chc == "x":
+      dagobah(gameState)
+    elif chc == "exit":
       exit()
       check = false
     else:
