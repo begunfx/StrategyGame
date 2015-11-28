@@ -51,18 +51,6 @@ def exit():
   printNow("Loser, The Force was not with you!!!")
   return
 
-# get choice function - usersChoice = getChoice(1) for destination number ect
-def getChoice(num):
-  if num == 1:
-    choice = requestString("What is the number of your next destination choice? or type exit to quit")
-  if num == 2:
-    choice = requestString("Do you want to pick up the plans? yes or no")
-  if num == 3:
-    choice = requestString("Do you want to rescue the Princess? yes or no")
-  if num == 4:
-    choice = requestString("Do you want to quit the game? Type exit to quit")
-  return choice
-
 #############################################
 # room one (Naboo) function #################
 #############################################
@@ -84,19 +72,21 @@ def naboo(gameState):
     check = false
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess!")
-    picPln = getChoice(2).lower()
+    picPln = requestString("Do you want to pick up the plans? yes or no")
+	picPln = picPln.lower()
     if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = getChoice(3).lower()
+    svPrncs = requestString("Do you want to rescue the Princess? yes or no")
+	svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = getChoice(1)
+    chc = requestString("What is the number of your next destination choice? or type exit to quit")
     chc = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
@@ -137,19 +127,21 @@ def coruscant(gameState):
       check = false
   if(gameState[3]==2 and gameState[1]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess")
-    picPln = getChoice(2).lower()
+    picPln = requestString("Do you want to pick up the plans? yes or no")
+	picPln = picPln.lower()
     if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = getChoice(3).lower()
+    svPrncs = requestString("Do you want to rescue the Princess? yes or no")
+	svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = getChoice(1)
+    chc = requestString("What is the number of your next destination choice? or type exit to quit")
     chc = chc.lower()
     if choice == "naboo": # for Naboo
       check = false
