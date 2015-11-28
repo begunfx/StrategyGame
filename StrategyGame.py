@@ -86,7 +86,7 @@ def naboo(gameState):
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = requestString("What is your destination choice? Coruscant, Tatooine, Alderaan or type EXIT to quit")
+    chc = requestString("What is your destination choice?\n Choose from:\nCoruscant, Tatooine, Alderaan, or type EXIT to quit")
     choice = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
@@ -101,7 +101,7 @@ def naboo(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to "+ chc +" from here, try Coruscant, Tatooine, Alderaan, or type EXIT to quit.")
+      printNow("You cannot get to "+ chc +" from here,\ntry Coruscant, Tatooine, Alderaan, or type EXIT to quit.")
       check = true
 
 #################################################
@@ -141,7 +141,7 @@ def coruscant(gameState):
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = requestString("What is your destination choice? Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.")
+    chc = requestString("What is your destination choice?\nChoose from\nNaboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.")
     choice = chc.lower()
     if choice == "naboo": # for Naboo
       check = false
@@ -159,7 +159,7 @@ def coruscant(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to "+ chc +" from here, try Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit..")
+      printNow("You cannot get to "+ chc +" from here,\ntry Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit..")
       check = true
 
 #################################################
