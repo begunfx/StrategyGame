@@ -437,68 +437,78 @@ def whereAmI(gameState, roomState, currentRoom):
   roomDescrip = ""
   action = ""
   
-  options = """
+  options =  "\n Type help to re-display this introduction."
+  options += "\nType exit or cancel the dialog box to quit at any time."
   
-    Type help to re-display this introduction.
-    Type exit or cancel the dialog box to quit at any time.
-    """
   if roomState == 'tatooine':
-    roomDescrip = """\nYou have arrived at Mos Isley Spaceport on Tatooine.  There are space transports currently available to take you
-      to Dagobah, Cloud City or Naboo and a cantina nearby.
-      """
+    roomDescrip =  "\nYou have arrived at Mos Isley Spaceport on Tatooine.  "  
+    roomDescrip += "There are space transports currently available to take you to Dagobah, "
+    roomDescrip += "Cloud City or Naboo and a cantina nearby."
     if gameState[1] == true:
-      action = """\nSince you found the princess, you'd better hurry to get her home!  You have a limited amount of turns to do it.  So get moving!
-        """
+      action =  "\nSince you found the princess, you'd better hurry to get her home!  "  
+      action += "You have a limited amount of turns to do it.  So get moving!"
     elif gameState[0] == true and gameState[1] == false:
-      action = """\nYou have the secret plans, but you might want to check out the Cantina, and see if anyone can help you find the Death Star.
-      """
+      action =  "\nYou have the secret plans, but you might want to check out the Cantina, "
+      action += "and see if anyone can help you find the Death Star."
     elif gameState[0] == false and gameState[1] == false:
-      action = """\nSince your mission is to find the secret plans for the Death star, you might want to ask around a little bit and see if anyone can help 
-      you.
-      """
-    action = action + "\nEnter Dagobah, CloudCity or Naboo to move on to another planet or type Cantina to go into the bar nearby and talk to some locals"
+      action =  "\nSince your mission is to find the secret plans for the Death star, "
+      action += "you might want to ask around a little bit and see if anyone can help you."
+    action += "\nEnter Dagobah, CloudCity or Naboo to move on to another planet or type "
+    action += "Cantina to go into the bar nearby and talk to some locals"
   elif roomState == 'cantina':
-    roomDescrip = """\nYou've entered the local cantina.  Strangely enough, the bar is virtually empty.  At the moment, only the barkeep is around
-      cleaning drink glasses with a scorn look on his face. 
-      """
+    roomDescrip =  "\nYou've entered the local cantina.  "
+    roomDescrip += "Strangely enough, the bar is virtually empty.  "
+    roomDescrip += "\nAt the moment, only the barkeep is around cleaning drink glasses "
+    roomDescrip += "with a scorn look on his face."
     if gameState[1] == true:
-      action = """\nThe princess is looking really pissed at the moment, since you seemed more concerned with hanging out at a bar than getting her to safety.
-        """
+      action =  "\nThe princess is looking really pissed at the moment, "
+      action += "since you seemed more concerned with hanging out at a bar "
+      action += "than getting her to safety."
     elif gameState[0] == true and gameState[1] == false:
-      action = """\nYou might want to ask the barkeep if he knows how to get to the Death Star.
-      """
+      action = "\nYou might want to ask the barkeep if he knows how to get to the Death Star."
     elif gameState[0] == false and gameState[1] == false:
-      action = """\nHe's staring right at you.  Now is your chance to ask him for some help.
-      """
-    action = action + "\nEnter chat to ask the barkeep a question or type leave to exit the cantina."    
+      action = "\nHe's staring right at you.  Now is your chance to ask him for some help."
+    action += "\nEnter chat to ask the barkeep a question or type leave to exit the cantina."    
   elif roomState == 'chat':
-    roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret Death Star plans around here?\"\n"
+    roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret "
+    roomDescrip += "Death Star plans around here?\""
     if gameState[1] == true:
-      action = """\nHe replies: \"Moron, you've got them in your hand, and the princess is right at your side.  If I were you I would get the hell
-      out of here and take her home as quick as possible.\"  Completely disgusted with you, the barkeep goes back to cleaning glasses.\n
-        """
+      action =  "\nHe replies: \"Moron, you've got them in your hand, and the "
+      action += "princess is right at your side.  "
+      action += "If I were you I would get the hell out of here and take her home "
+      action += "as quick as possible.\""  
+      action += "Completely disgusted with you, the barkeep goes back to cleaning glasses.\n"
     elif gameState[0] == true and gameState[1] == false:
-      action = """\nHe replies: \"Moron, you've got them in your hand.\"  You reply with a look of embarrassment on your face: \"Sorry, I mean do you know of a way to get to
-      the Death Star?\"\n
-      """
+      action =  "\nHe replies: \"Moron, you've got them in your hand.\"  "
+      action += "You reply with a look of embarrassment on your face: \"Sorry, I mean "
+      action += "do you know of a way to get to the Death Star?\""
       if gameState[4] == currentRoom and gameState[1] == false:
-        action = action + """\n\"You might want to try the exit at the back behind the bar.  It\'s a secret launch pad.  Should take you directly there.  Now leave me alone!\""""
+        action += "\n\"You might want to try the exit at the back behind the bar.  "
+        action += "It\'s a secret launch pad.  Should take you directly there.  "
+        action += "Now leave me alone!\""
       else:
-        action = action + """\n\"Nope, nothing like that 'round here.  Don\'t ask me stupid questions.  Now leave me alone!\""""
+        action += "\n\"Nope, nothing like that 'round here.  "
+        action += "Don\'t ask me stupid questions.  Now leave me alone!\""
       
     elif gameState[0] == false and gameState[1] == false:
       if gameState[3] == currentRoom and gameState[0] == false:
-        action = action + """\n\"You mean these worthless maps?  Some old guy with a lightsaber traded them for a drink.  I took pitty on the old drunk and agreed on the trade.  
-        You can have them if you want.  There just collecting dust back here.\"  He hands you the plans.  What luck!"""
+        action += "\n\"You mean these worthless maps?  "
+        action += "Some old guy with a lightsaber traded them for a drink.  "
+        action += "I took pitty on the old drunk and agreed on the trade.  "
+        action += "You can have them if you want.  "
+        action += "There just collecting dust back here.\"  "
+        action += "He hands you the plans.  What luck!"
       else:
-        action = """\n\"Nope, nothing like that around here.  You may want to check out one of the nearby systems.  Might have better luck.\"
-        """
+        action =  "\n\"Nope, nothing like that around here.  "
+        action += "You may want to check out one of the nearby systems.  "
+        action += "Might have better luck.\""
     if gameState[4] == currentRoom and gameState[1] != true:
-      action = action + "\n\nType DeathStar to use the secret launchpad or type leave to exit the bar"
+      action += "\n\nType DeathStar to use the secret launchpad "
+      action += "or type leave to exit the bar"
     elif gameState[4] != currentRoom or gameState[1] == true: 
-      action = action + "\nType leave to exit the bar"
+      action += "\nType leave to exit the bar"
     elif gameState[3] != currentRoom or gameState[0] == true: 
-      action = action + "\nType leave to exit the bar"  
+      action += "\nType leave to exit the bar"  
   return(options, roomDescrip, action, gameState)
   
   
@@ -518,6 +528,7 @@ def dialog(roomState, gameState, currentRoom):
 
 
 def tatooine(gameState):
+
   currentRoom = 3
   roomState = 'tatooine'
   #plansRoom, deathStarRoom = randomizeRooms()
