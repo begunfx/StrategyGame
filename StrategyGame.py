@@ -100,13 +100,13 @@ def naboo(gameState):
     chc = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
-      room2(gameState)
+      coruscant(gameState)
     elif choice == "tatooine": # for Tatooine
       check = false
-      room3(gameState)
+      tatooine(gameState)
     elif choice == "alderaan": # for Alderaan
       check = false
-      room4(gameState)
+      alderaan(gameState)
     elif chc == "exit":
       exit()
       check = false
