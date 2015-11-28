@@ -384,7 +384,6 @@ def deathStar(gameState):
 #############################################
 # room three (Tatooine) function ############
 #############################################
-
 def userChoice(roomState, gameState, currentRoom):
   choiceStat = false
   while choiceStat == false:
@@ -408,6 +407,10 @@ def userChoice(roomState, gameState, currentRoom):
         return('dagobah')
       elif userInput == 'cloudcity' and roomState == 'tatooine':
         printNow("your off to Cloud City...woosh!")
+        choiceStat = true
+        return('cloudcity')
+      elif userInput == 'naboo' and roomState == 'tatooine':
+        printNow("your off to Naboo...woosh!")
         choiceStat = true
         return('cloudcity')
       elif userInput == 'cantina' and roomState == 'tatooine':
@@ -441,7 +444,7 @@ def whereAmI(roomState, currentRoom):
     """
   if roomState == 'tatooine':
     roomDescrip = """\nYou have arrived at Mos Isley Spaceport on Tatooine.  There are space transports currently available to take you
-      to Dagobah or Cloud City and a cantina nearby.
+      to Dagobah, Cloud City or Naboo and a cantina nearby.
       """
     if gameState[1] == true:
       action = """\nSince you found the princess, you'd better hurry to get her home!  You have a limited amount of turns to do it.  So get moving!
@@ -453,7 +456,7 @@ def whereAmI(roomState, currentRoom):
       action = """\nSince your mission is to find the secret plans for the Death star, you might want to ask around a little bit and see if anyone can help 
       you.
       """
-    action = action + "\nEnter Dagobah or CloudCity to move on to another planet or type Cantina to go into the bar nearby and talk to some locals"
+    action = action + "\nEnter Dagobah, CloudCity or Naboo to move on to another planet or type Cantina to go into the bar nearby and talk to some locals"
   elif roomState == 'cantina':
     roomDescrip = """\nYou've entered the local cantina.  Strangely enough, the bar is virtually empty.  At the moment, only the barkeep is around
       cleaning drink glasses with a scorn look on his face. 
@@ -506,6 +509,7 @@ def dialog(roomState, gameState, currentRoom):
   if gameState[1] == 1:
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
+    
   options = whereAmI(roomState, currentRoom)[0]
   roomDescrip = whereAmI(roomState, currentRoom)[1]
   action = whereAmI(roomState, currentRoom)[2]
@@ -543,6 +547,10 @@ def tatooine(gameState):
         gameState[2] -= 1
       return
     elif userResult == 'cloudcity':
+      if gameState[1] == 1:
+        gameState[2] -= 1
+      return
+    elif userResult == 'naboo':
       if gameState[1] == 1:
         gameState[2] -= 1
       return
