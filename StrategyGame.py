@@ -46,14 +46,11 @@ def randomizeRooms():
    
   return (plansRoom, deathStarRoom)
 
-# initialize gameState array
-plansRoom, deathStarRoom = randomizeRooms()
-gameState = [false,false,6,plansRoom,deathStarRoom]
-
 # exit function
 def exit():
   printNow("Loser, The Force was not with you!!!")
   return
+
 # get choice function - usersChoice = getChoice(1) for destination number ect
 def getChoice(num):
   if num == 1:
