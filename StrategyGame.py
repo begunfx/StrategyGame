@@ -73,14 +73,14 @@ def naboo(gameState):
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess!")
     picPln = requestString("Do you want to pick up the plans? yes or no")
-	picPln = picPln.lower()
+    picPln = picPln.lower()
     if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
     svPrncs = requestString("Do you want to rescue the Princess? yes or no")
-	svPrncs = svPrncs.lower()
+    svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
@@ -128,14 +128,14 @@ def coruscant(gameState):
   if(gameState[3]==2 and gameState[1]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess")
     picPln = requestString("Do you want to pick up the plans? yes or no")
-	picPln = picPln.lower()
+    picPln = picPln.lower()
     if picPln == "yes":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
     svPrncs = requestString("Do you want to rescue the Princess? yes or no")
-	svPrncs = svPrncs.lower()
+    svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
