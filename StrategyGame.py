@@ -490,7 +490,6 @@ def whereAmI(roomState, currentRoom):
       if gameState[3] == currentRoom and gameState[0] == false:
         action = action + """\n\"You mean these worthless maps?  Some old guy with a lightsaber traded them for a drink.  I took pitty on the old drunk and agreed on the trade.  
         You can have them if you want.  There just collecting dust back here.\"  He hands you the plans.  What luck!"""
-        gameState[1] = true
       else:
         action = """\n\"Nope, nothing like that around here.  You may want to check out one of the nearby systems.  Might have better luck.\"
         """
@@ -542,6 +541,8 @@ def tatooine(gameState):
       roomState = 'tatooine'
       dialog(roomState, gameState, currentRoom)
       userResult = userChoice(roomState, gameState, currentRoom)
+    if userResult == 'chat' and gameState[3] == currentRoom:
+      gameState[1] = true
     if userResult == 'dagobah':
       if gameState[1] == 1:
         gameState[2] -= 1
