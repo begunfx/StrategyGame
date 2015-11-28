@@ -64,7 +64,7 @@ def naboo(gameState):
   rmDesc += "It is inhabited by two societies - an indigenous\n"
   rmDesc += "species of intelligent amphibians called the Gungans, and\n"
   rmDesc += "a group of peaceful humans who are referred to as the Naboo.\n" 
-  rmDesc += "Destination choices are: \n Coruscant, Tatooine, Alderaan, or X for exit.\n"
+  rmDesc += "Destination choices are: \n Coruscant, Tatooine, Alderaan, or EXIT to quit.\n"
   printNow (rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
@@ -79,14 +79,14 @@ def naboo(gameState):
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==1 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = requestString("Do you want to rescue the Princess? yes or no")
+    svPrncs = requestString("Do you want to go to the DeathStar to rescue the Princess? yes or no")
     svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = requestString("What is the number of your next destination choice? or type exit to quit")
+    chc = requestString("What is your destination choice? Coruscant, Tatooine, Alderaan or type EXIT to quit")
     chc = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
@@ -101,7 +101,7 @@ def naboo(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to destination "+ chc +" from here, try Coruscant, Tatooine, or Alderaan.")
+      printNow("You cannot get to "+ chc +" from here, try Coruscant, Tatooine, Alderaan, or type EXIT to quit.")
       check = true
 
 #################################################
@@ -118,7 +118,7 @@ def coruscant(gameState):
   rmDesc += "It is a planet located in the Galactic Core.\n"
   rmDesc += "It is generally agreed that Coruscant is\n"
   rmDesc += "the most politically important world in the galaxy.\n" 
-  rmDesc += "Destination choices are: \nNaboo, Alderaan, Hoth, Dagobah, or exit to quit.\n"
+  rmDesc += "Destination choices are: \nNaboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.\n"
   printNow(rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
     gameState[2] -= 1 # this is not exit so subtract 1
@@ -134,14 +134,14 @@ def coruscant(gameState):
       printNow("\nYou have the plans, May The Force be With You!\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
     printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = requestString("Do you want to rescue the Princess? yes or no")
+    svPrncs = requestString("Do you want to go to the DeathStar to rescue the Princess? yes or no")
     svPrncs = svPrncs.lower()
     if svPrncs == "yes": # if they want to save princess
       gameState[1] = true
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = requestString("What is the number of your next destination choice? or type exit to quit")
+    chc = requestString("What is your destination choice? Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.")
     chc = chc.lower()
     if choice == "naboo": # for Naboo
       check = false
@@ -159,7 +159,7 @@ def coruscant(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to destination "+ chc +" from here, try Alderaan, Hoth, or Dagobah.")
+      printNow("You cannot get to "+ chc +" from here, try Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit..")
       check = true
 
 #################################################
