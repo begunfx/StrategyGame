@@ -539,9 +539,15 @@ def tatooine(gameState):
       dialog(roomState, gameState, currentRoom)
       userResult = userChoice(roomState, gameState, currentRoom)
     if userResult == 'dagobah':
+      if gameState[1] == 1:
+        gameState[2] -= 1
       return
     elif userResult == 'cloudcity':
+      if gameState[1] == 1:
+        gameState[2] -= 1
       return
     elif userResult == 'deathstar':
+      if gameState[1] == 1:
+        gameState[2] -= 1
       return
     
