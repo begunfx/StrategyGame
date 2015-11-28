@@ -111,7 +111,7 @@ def naboo(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to destination "+ chc +" from here, Try 2, 3, or 4.")
+      printNow("You cannot get to destination "+ chc +" from here, try Coruscant, Tatooine, or Alderaan.")
       check = true
 
 #################################################
@@ -167,7 +167,7 @@ def coruscant(gameState):
       exit()
       check = false
     else:
-      printNow("You cannot get to destination "+ chc +" from here, Try 2, 3, or 4.")
+      printNow("You cannot get to destination "+ chc +" from here, try Alderaan, Hoth, or Dagobah.")
       check = true
 
 #################################################
@@ -386,3 +386,5 @@ def deathStar(gameState):
       check = false
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
