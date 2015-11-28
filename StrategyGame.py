@@ -386,5 +386,3 @@ def deathStar(gameState):
       check = false
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
-Status API Training Shop Blog About Pricing
-© 2015 GitHub, Inc. Terms Privacy Security Contact Help
