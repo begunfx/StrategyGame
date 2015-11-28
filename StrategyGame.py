@@ -378,3 +378,170 @@ def deathStar(gameState):
       check = false
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
+
+
+
+#############################################
+# room three (Tatooine) function ############
+#############################################
+
+def userChoice(roomState, gameState, currentRoom):
+  choiceStat = false
+  while choiceStat == false:
+    userInput = requestString("Make your choice: ")
+    if userInput == None:
+      printNow("Okay, I guess you want to leave the game...Bye!")
+      choiceStat = true
+      exit()
+    else:
+      userInput = userInput.lower()
+      if userInput == 'help':
+        return('help')
+        choiceStat = false
+      elif userInput == 'exit':
+        printNow("Time to leave.")
+        choiceStat = true
+        exit()
+      elif userInput == 'dagobah' and roomState == 'tatooine':
+        printNow("your off to Dagobah...wooosh!")
+        choiceStat = true
+        return('dagobah')
+      elif userInput == 'cloudcity' and roomState == 'tatooine':
+        printNow("your off to Cloud City...woosh!")
+        choiceStat = true
+        return('cloudcity')
+      elif userInput == 'cantina' and roomState == 'tatooine':
+        printNow("I'm thursty, let's go check out the cantina.")
+        choiceStat = true
+        return('cantina')
+      elif userInput == 'chat' and roomState == 'cantina':
+        choiceStat = true 
+        return('chat')  
+      elif userInput == 'leave' and roomState == 'cantina':
+        printNow("\nYou've left the cantina.")
+        choiceStat = true
+        return('leave')
+      elif gameState[4] == currentRoom and roomState == 'cantina':
+        printNow("your off to save the Princess on the Death Star...woosh!")
+        choiceStat = true
+        return('deathstar')
+      else:
+        printNow("The nav computer could not interpret your choice. Please try again.")
+        choiceStat = false
+        
+def whereAmI(roomState, currentRoom):
+  options = ""
+  roomDescrip = ""
+  action = ""
+  
+  options = """
+  
+    Type help to re-display this introduction.
+    Type exit or cancel the dialog box to quit at any time.
+    """
+  if roomState == 'tatooine':
+    roomDescrip = """\nYou have arrived at Mos Isley Spaceport on Tatooine.  There are space transports currently available to take you
+      to Dagobah or Cloud City and a cantina nearby.
+      """
+    if gameState[1] == true:
+      action = """\nSince you found the princess, you'd better hurry to get her home!  You have a limited amount of turns to do it.  So get moving!
+        """
+    elif gameState[0] == true and gameState[1] == false:
+      action = """\nYou have the secret plans, but you might want to check out the Cantina, and see if anyone can help you find the Death Star.
+      """
+    elif gameState[0] == false and gameState[1] == false:
+      action = """\nSince your mission is to find the secret plans for the Death star, you might want to ask around a little bit and see if anyone can help 
+      you.
+      """
+    action = action + "\nEnter Dagobah or CloudCity to move on to another planet or type Cantina to go into the bar nearby and talk to some locals"
+  elif roomState == 'cantina':
+    roomDescrip = """\nYou've entered the local cantina.  Strangely enough, the bar is virtually empty.  At the moment, only the barkeep is around
+      cleaning drink glasses with a scorn look on his face. 
+      """
+    if gameState[1] == true:
+      action = """\nThe princess is looking really pissed at the moment, since you seemed more concerned with hanging out at a bar than getting her to safety.
+        """
+    elif gameState[0] == true and gameState[1] == false:
+      action = """\nYou might want to ask the barkeep if he knows how to get to the Death Star.
+      """
+    elif gameState[0] == false and gameState[1] == false:
+      action = """\nHe's staring right at you.  Now is your chance to ask him for some help.
+      """
+    action = action + "\nEnter chat to ask the barkeep a question or type leave to exit the cantina."    
+  elif roomState == 'chat':
+    roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret Death Star plans around here?\"\n"
+    if gameState[1] == true:
+      action = """\nHe replies: \"Moron, you've got them in your hand, and the princess is right at your side.  If I were you I would get the hell
+      out of here and take her home as quick as possible.\"  Completely disgusted with you, the barkeep goes back to cleaning glasses.\n
+        """
+    elif gameState[0] == true and gameState[1] == false:
+      action = """\nHe replies: \"Moron, you've got them in your hand.\"  You reply with a look of embarrassment on your face: \"Sorry, I mean do you know of a way to get to
+      the Death Star?\"\n
+      """
+      if gameState[4] == currentRoom and gameState[1] == false:
+        action = action + """\n\"You might want to try the exit at the back behind the bar.  It\'s a secret launch pad.  Should take you directly there.  Now leave me alone!\""""
+      else:
+        action = action + """\n\"Nope, nothing like that 'round here.  Don\'t ask me stupid questions.  Now leave me alone!\""""
+      
+    elif gameState[0] == false and gameState[1] == false:
+      if gameState[3] == currentRoom and gameState[0] == false:
+        action = action + """\n\"You mean these worthless maps?  Some old guy with a lightsaber traded them for a drink.  I took pitty on the old drunk and agreed on the trade.  
+        You can have them if you want.  There just collecting dust back here.\"  He hands you the plans.  What luck!"""
+        gameState[1] = true
+      else:
+        action = """\n\"Nope, nothing like that around here.  You may want to check out one of the nearby systems.  Might have better luck.\"
+        """
+    if gameState[4] == currentRoom and gameState[1] != true:
+      action = action + "\n\nType DeathStar to use the secret launchpad or type leave to exit the bar"
+    elif gameState[4] != currentRoom or gameState[1] == true: 
+      action = action + "\nType leave to exit the bar"
+    elif gameState[3] != currentRoom or gameState[0] == true: 
+      action = action + "\nType leave to exit the bar"  
+  return(options, roomDescrip, action, gameState)
+  
+  
+def dialog(roomState, gameState, currentRoom):
+
+  printNow("\n--------------- Tatooine ---------------")
+  if gameState[1] == 1:
+    printNow("You have %d of 6 turns remaining\n" % gameState[2])
+    
+  options = whereAmI(roomState, currentRoom)[0]
+  roomDescrip = whereAmI(roomState, currentRoom)[1]
+  action = whereAmI(roomState, currentRoom)[2]
+  textDisplay =  roomDescrip + action + options
+  
+  printNow(textDisplay)  
+
+
+def tatooine(gameState):
+
+  currentRoom = 3
+  roomState = 'tatooine'
+  #plansRoom, deathStarRoom = randomizeRooms()
+  
+    
+  dialog(roomState, gameState, currentRoom)
+  userResult = userChoice(roomState, gameState, currentRoom)
+  while userResult != 'exit' and userResult != None:
+    if userResult == 'help':
+      dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom)
+    if userResult == 'cantina':
+      roomState = 'cantina'
+      dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom)
+    if userResult == 'chat':
+      dialog(userResult, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom)
+    if userResult == 'leave':
+      roomState = 'tatooine'
+      dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom)
+    if userResult == 'dagobah':
+      return
+    elif userResult == 'cloudcity':
+      return
+    elif userResult == 'deathstar':
+      return
+    
