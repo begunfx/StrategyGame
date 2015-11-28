@@ -87,7 +87,7 @@ def naboo(gameState):
   # destination choice loop
   while check == true:
     chc = requestString("What is your destination choice? Coruscant, Tatooine, Alderaan or type EXIT to quit")
-    chc = chc.lower()
+    choice = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
       coruscant(gameState)
@@ -142,7 +142,7 @@ def coruscant(gameState):
   # destination choice loop
   while check == true:
     chc = requestString("What is your destination choice? Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.")
-    chc = chc.lower()
+    choice = chc.lower()
     if choice == "naboo": # for Naboo
       check = false
       naboo(gameState)
