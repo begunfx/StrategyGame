@@ -68,7 +68,8 @@ def naboo(gameState):
   printNow (rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
-    printNow("May the Force be with you!!!")
+	printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
+    printNow("\nThe Force is with with you!!!\n")
     check = false
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     printNow("\nYou have found the plan room, please take plans to save the Princess!")
@@ -86,7 +87,14 @@ def naboo(gameState):
       printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
   # destination choice loop
   while check == true:
-    chc = requestString("What is your destination choice?\n Choose from:\nCoruscant, Tatooine, Alderaan, or type EXIT to quit")
+    dstChc = "What is your destination choice?\n"
+    dstChc += "Type \"Coruscant\" to jump to Coruscant\n"
+    dstChc += "Type \"Tatooine\" to jump to Tatooine\n"
+    dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
+    dstChc += "or just Type \"EXIT\" to quit."
+    chc = requestString(dstChc)
+	if chc.isdigit():
+      chc = str(chc)
     choice = chc.lower()
     if choice == "coruscant": # for Coruscant
       check = false
@@ -121,27 +129,53 @@ def coruscant(gameState):
   rmDesc += "Destination choices are: \nNaboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.\n"
   printNow(rmDesc)
   if(gameState[0]==true and gameState[1]==true): #has plans and princess
-    gameState[2] -= 1 # this is not exit so subtract 1
-    if gameState[2]<=0:
-      exit()
-      check = false
-  if(gameState[3]==2 and gameState[1]== false and gameState[1] == false):# found plan room
-    printNow("\nYou have found the plan room, please take plans to save the Princess")
-    picPln = requestString("Do you want to pick up the plans? yes or no")
+    gameState[2] -= 1
+    if gameState[2] > 1:
+      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+    elif gameState[2] == 1:
+      printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
+    if gameState[2] == 0:
+      printNow("Imperial troops caught up with you en route to Coruscant. You lose.")
+      printNow("The Force is not with you.")
+      return
+  if(gameState[3]==2 and gameState[0]== false and gameState[1] == false):# found plan room
+    fndPlns = "\nHowever, before you take off, Valenthyne Farfalla\n"
+    fndPlns += "catches up to tell you that the Bothans have succeeded in\n"
+    fndPlns += "bribing a high-ranking Imperial officer into allowing them\n"
+    fndPlns += "to infiltrate a slicer droid into the Coruscant computer network\n"
+    fndPlns += "and have located and copied the plans of the Death Star layout.\n"
+    fndPlns += "He asks you to take them to use in your mission to rescue Princess Leia.\n\n"
+    printNow(fndPlns)
+    picPln = requestString("Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n")
     picPln = picPln.lower()
-    if picPln == "yes":
+    if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
+	else:
+	  printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
-    printNow("\nYou have found the DeathStar, please save the Princess!!!")
-    svPrncs = requestString("Do you want to go to the DeathStar to rescue the Princess? yes or no")
+    dthStrFnd = "\nHowever, you notice that everyone has become extremely nervous\n"
+    dthStrFnd += "and you ask why. It turns out that the Death Star has been \n"
+    dthStrFnd += "orbiting for the past several hours. You can finally\n"
+    dthStrFnd += "rescue Princess Leia!\n\n"
+    printNow(dthStrFnd)    
+    svPrncs = requestString("Type \"Save Princess\" to jump to the Death Star and rescue Leia\n")
     svPrncs = svPrncs.lower()
-    if svPrncs == "yes": # if they want to save princess
-      gameState[1] = true
-      printNow("\nYou have the Princess, \nhead for the exit, \nMay The Force be With You!")
+    if svPrncs == "save princess": # if they want to save princess
+      deathStar(gameState)
+	else:
+	  printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
   while check == true:
-    chc = requestString("What is your destination choice?\nChoose from\nNaboo, Alderaan, Hoth, Dagobah, or type EXIT to quit.")
+    dstChc = "What is your destination choice?\n"
+    dstChc += "Type \"Naboo\" to jump to Naboo\n"
+    dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
+    dstChc += "Type \"Hoth\" to jump to Hoth\n"
+    dstChc += "Type \"Dagobah\" to jump to Dagobah\n"
+    dstChc += "or just Type \"EXIT\" to quit."
+    chc = requestString(dstChc)
+    if chc.isdigit():
+      chc = str(chc)
     choice = chc.lower()
     if choice == "naboo": # for Naboo
       check = false
