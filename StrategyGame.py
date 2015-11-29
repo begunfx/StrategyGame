@@ -717,7 +717,6 @@ def whereAmI(gameState, roomState, currentRoom):
       else:
         action += "\n\"Nope, nothing like that 'round here.  Don\'t ask me "
         action += "stupid questions.  Now leave me alone!\""
-      
     elif gameState[0] == false and gameState[1] == false:
       if gameState[3] == currentRoom and gameState[0] == false:
         action += "\n\"You mean these worthless maps?  Some old guy with a "
