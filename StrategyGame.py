@@ -909,6 +909,7 @@ def hoth(gameState): #room 5
   roomDesc += "A newly deceased tauntaun can be cut open to \n"
   roomDesc += "to make a great temporary refuge from the cold.\n"
 
+  #assumes once plans found, princess is found
   
   #if the player has the plans and princess, decrement turns, tell player how many turns
   if (gameState[0] == true and #hasPlans 
@@ -922,14 +923,14 @@ def hoth(gameState): #room 5
       roomDesc += "You did not exit in time.  You lose."
       return
   printNow(roomDesc)
-  
+   
   while check == true:
     option = "What is your choice?\n"
     # if the player doesn't have plans, and this is the planet with the plans, tell the player
     if (gameState[0] == false and #!hasPlans 
     gameState[3] == int(5)): #this planet has the plans
        option += "The plans are here!\n"
-       option += "Type \"get plans\" to get the plans.\n"
+       option += "Type \"pickup plans\" to get the plans.\n"
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
@@ -942,6 +943,12 @@ def hoth(gameState): #room 5
     option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
+    
+    if choice == None:
+      printNow("Bye Jar Jar")
+      return
+      check = false
+    
     choice = choice.lower()
     
     if choice == "coruscant":
@@ -950,7 +957,7 @@ def hoth(gameState): #room 5
     elif choice == "endor":
       endor(gameState)
       check = false
-    elif (choice == "get plans" and
+    elif (choice == "pickup plans" and
     gameState[0] == false and #player doesn't already have plans
     gameState[3] == int(5)):#this is the plans room
       printNow("You got the plans, now you can resuce the princess!")
@@ -968,6 +975,7 @@ def hoth(gameState): #room 5
       printNow("Bye Jar Jar")
       return
       check = false
+    
     else:
       printNow("I don't recognize that statement.")
       
@@ -1002,7 +1010,7 @@ def dagobah(gameState): #room 6
     if (gameState[0] == false and #!hasPlans 
     gameState[3] == int(6)): #this planet has the plans
       option += "\nThe plans are here!\n"
-      option += "Type \"get plans\" to get the plans."
+      option += "Type \"pickup plans\" to get the plans."
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
@@ -1017,6 +1025,11 @@ def dagobah(gameState): #room 6
     option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
+    if choice == None:
+      printNow("Bye Jar Jar")
+      return
+      check = false
+      
     choice = choice.lower()
     
     if choice == "coruscant":
@@ -1025,7 +1038,7 @@ def dagobah(gameState): #room 6
     elif choice == "tatooine":
       tatooine(gameState)
       check = false
-    elif (choice == "get plans" and
+    elif (choice == "pickup plans" and
     gameState[0] == false and #player doesn't already have plans
     gameState[3] == int(6)):#this is the plans room
       printNow("You got the plans, now you can resuce the princess!")
