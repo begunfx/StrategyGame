@@ -914,9 +914,9 @@ def hoth(gameState): #room 5
   if (gameState[0] == true and #hasPlans 
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1
-  if gameState[2] > 1:
-    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n"
-  elif gameState[2] == 1:
+  if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
+  elif gameState[2] == 1 and gameState[1] == true:
     roomDesc += "\nYou only have 1 turn left.\n" 
   elif gameState[2] == 0:
       roomDesc += "You did not exit in time.  You lose."
@@ -983,13 +983,13 @@ def dagobah(gameState): #room 6
   roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
 
   
-  #if the player has the plans and princess, 
+  #if the player has the plans and princess... 
   if (gameState[0] == true and #hasPlans 
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1 #decrement turnsLeft
-  if gameState[2] > 1: #tell player how many turns left
-    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n"
-  elif gameState[2] == 1:
+  if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
+  elif gameState[2] == 1 and gameState[1] == true:
     roomDesc += "\nYou only have 1 turn left.\n" 
   elif gameState[2] == 0:
       roomDesc += "You exit in time.  You lose."
