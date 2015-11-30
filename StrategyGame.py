@@ -30,6 +30,7 @@ def starWars():
   # gameState[3] = plansRoom (2, 3, ... , 8) random
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
+  printNow(gameState)
   naboo(gameState)
              
 #Randomize int numbers to pick room to hide plans in
@@ -51,10 +52,6 @@ def exit():
   printNow("Loser, The Force was not with you!!!")
   return
 
-# end function
-def end():
-  return false
-
 #############################################
 # room one (Naboo) function #################
 #############################################
@@ -74,7 +71,7 @@ def naboo(gameState):
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
     printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
     printNow("\nThe Force is with with you!!!\n")
-    check = end()
+    check = false
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     fndPlns = "\nHowever, before you take off, Valenthyne Farfalla\n"
@@ -113,6 +110,8 @@ def naboo(gameState):
     dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
+    if (chc == None):
+      chc = "exit"
     if chc.isdigit():
       chc = str(chc)
     choice = chc.lower()
@@ -194,6 +193,8 @@ def coruscant(gameState):
     dstChc += "Type \"Dagobah\" to jump to Dagobah\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
+    if (chc == None):
+      chc = "exit"
     if chc.isdigit():
       chc = str(chc)
     choice = chc.lower()
@@ -374,7 +375,7 @@ def endor(gameState):
     roomDescrip += "rolling toward you and beeping.  The gold protocol droid\n"
     roomDescrip += "next to him calls for you to wait.\n"
     
-    choiceDescrip = cDescrip + "Type \"Droids\" to see what the droids have to say\n"
+    choiceDescrip = "Type \"Droids\" to see what the droids have to say\n"
     
   #if you have the plans, no princess, and this is the planet with the Death Star orbiting, notify
   if gameState[0] == true and gameState[1] == false and gameState[4] == 8:
@@ -383,7 +384,7 @@ def endor(gameState):
     roomDescrip += "orbiting for the past several hours. You can finally\n"
     roomDescrip += "rescue Princess Leia!\n"
     
-    choiceDescrip = cDescrip + "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
+    choiceDescrip = "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
   
   #if you have the plans and princess, notify and deduct turns left
   if gameState[0] == true and gameState[1] == true:
@@ -715,12 +716,16 @@ def tatooine(gameState):
       gameState[1] = true
     if userResult == 'dagobah':
       dagobah(gameState)
+      userResult = 'exit'
     elif userResult == 'cloudcity':
       cloudCity(gameState)
+      userResult = 'exit'
     elif userResult == 'naboo':
       naboo(gameState)
+      userResult = 'exit'
     elif userResult == 'deathStar':
       deathStar(gameState)
+      userResult = 'exit'
     
     
 #############################################
@@ -892,10 +897,13 @@ def cloudCity(gameState):
       gameState[1] = true  
     if userResult == 'tatooine':
     	tatooine(gameState)
+    	userResult = 'exit'
     elif userResult == 'alderaan':
     	alderaan(gameState)
+    	userResult = 'exit'
     elif userResult == 'deathStar':
     	deathStar(gameState)
+    	userResult = 'exit'
     
      
 ##########HOTH FUNCTION (ROOM 5)#########################
