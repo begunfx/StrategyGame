@@ -771,7 +771,7 @@ def whereAmI2(gameState, roomState, currentRoom):
   action = ""
   
   options =  "\n Type help to re-display this introduction."
-  options += "\nType exit or cancel the dialog box to quit at any time."
+  options += "\nType exit or cancel the dialog2 box to quit at any time."
   
   if roomState == 'cloudCity':
     roomDescrip =  "\nYou have arrived at the main space port on Cloud City.  "
@@ -847,7 +847,7 @@ def whereAmI2(gameState, roomState, currentRoom):
   return(options, roomDescrip, action, gameState)
   
   
-def dialog(roomState, gameState, currentRoom):
+def dialog2(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
@@ -866,22 +866,22 @@ def cloudCity(gameState):
   currentRoom = 7
   roomState = 'cloudCity'
     
-  dialog(roomState, gameState, currentRoom)
+  dialog2(roomState, gameState, currentRoom)
   userResult = userChoice2(roomState, gameState, currentRoom)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
-      dialog(roomState, gameState, currentRoom)
+      dialog2(roomState, gameState, currentRoom)
       userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'business':
       roomState = 'business'
-      dialog(roomState, gameState, currentRoom)
+      dialog2(roomState, gameState, currentRoom)
       userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'chat':
-      dialog(userResult, gameState, currentRoom)
+      dialog2(userResult, gameState, currentRoom)
       userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'leave':
       roomState = 'cloudCity'
-      dialog(roomState, gameState, currentRoom)
+      dialog2(roomState, gameState, currentRoom)
       userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'chat' and gameState[3] == currentRoom:
       gameState[1] = true  
@@ -891,8 +891,6 @@ def cloudCity(gameState):
     	alderaan(gameState)
     elif userResult == 'deathstar':
     	deathstar(gameState)
-    
-    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
