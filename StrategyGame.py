@@ -677,10 +677,7 @@ def whereAmI(gameState, roomState, currentRoom):
 def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Tatooine ---------------")
-  if gameState[1] == 1:
-    gameState[2] -= 1
-    printNow("You have %d of 6 turns remaining\n" % gameState[2])
-    
+   
   options = whereAmI(gameState, roomState, currentRoom)[0]
   roomDescrip = whereAmI(gameState, roomState, currentRoom)[1]
   action = whereAmI(gameState, roomState, currentRoom)[2]
@@ -693,6 +690,20 @@ def tatooine(gameState):
   currentRoom = 3
   roomState = 'tatooine'
   #plansRoom, deathStarRoom = randomizeRooms()
+  
+  #if you have the plans and princess, notify and deduct turns left
+  remaining = ""
+  if gameState[0] == true and gameState[1] == true:
+    gameState[2] -= 1
+    if gameState[2] > 1:
+      remaining == "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+    elif gameState[2] == 1:
+      remaining += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+    if gameState[2] == 0:
+      printNow("Imperial troops caught up with you en route to Endor. You lose.")
+      printNow("The Force is not with you.")
+      return
+ 
   
   dialog(roomState, gameState, currentRoom)
   userResult = userChoice(roomState, gameState, currentRoom)
@@ -748,15 +759,15 @@ def userChoice2(roomState, gameState, currentRoom):
         choiceStat = true
         exit()
       elif userInput == 'tatooine' and roomState == 'cloudCity':
-        printNow("your off to Tatooine...wooosh!")
+        printNow("you're off to Tatooine...wooosh!")
         choiceStat = true
         return('tatooine')
       elif userInput == 'alderaan' and roomState == 'cloudCity':
-        printNow("your off to Alderaan...woosh!")
+        printNow("you're off to Alderaan...woosh!")
         choiceStat = true
         return('alderaan')
       elif userInput == 'business' and roomState == 'cloudCity':
-        printNow("I'm thursty, let's go check out the business.")
+        printNow("I'm thirsty, let's go check out the business.")
         choiceStat = true
         return('business')
       elif userInput == 'chat' and roomState == 'business':
@@ -767,7 +778,7 @@ def userChoice2(roomState, gameState, currentRoom):
         choiceStat = true
         return('leave')
       elif gameState[4] == currentRoom and roomState == 'business':
-        printNow("your off to save the Princess on the Death Star...woosh!")
+        printNow("you're off to save the Princess on the Death Star...woosh!")
         choiceStat = true
         return('deathStar')
       else:
@@ -780,7 +791,7 @@ def whereAmI2(gameState, roomState, currentRoom):
   action = ""
   
   options =  "\n Type help to re-display this introduction."
-  options += "\nType exit or cancel the dialog2 box to quit at any time."
+  options += "\nType exit or cancel the dialog box to quit at any time."
   
   if roomState == 'cloudCity':
     roomDescrip =  "\nYou have arrived at the main space port on Cloud City.  "
@@ -859,9 +870,6 @@ def whereAmI2(gameState, roomState, currentRoom):
 def dialog2(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
-  if gameState[1] == 1:
-    gameState[2] -= 1
-    printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI2(gameState, roomState, currentRoom)[0]
   roomDescrip = whereAmI2(gameState, roomState, currentRoom)[1]
@@ -874,6 +882,19 @@ def cloudCity(gameState):
 
   currentRoom = 7
   roomState = 'cloudCity'
+  
+  #if you have the plans and princess, notify and deduct turns left
+  remaining = ""
+  if gameState[0] == true and gameState[1] == true:
+    gameState[2] -= 1
+    if gameState[2] > 1:
+      remaining == "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+    elif gameState[2] == 1:
+      remaining += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+    if gameState[2] == 0:
+      printNow("Imperial troops caught up with you en route to Endor. You lose.")
+      printNow("The Force is not with you.")
+      return
     
   dialog2(roomState, gameState, currentRoom)
   userResult = userChoice2(roomState, gameState, currentRoom)
@@ -903,7 +924,6 @@ def cloudCity(gameState):
     elif userResult == 'deathStar':
     	deathStar(gameState)
     	userResult = 'exit'
-    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
