@@ -30,6 +30,7 @@ def starWars():
   # gameState[3] = plansRoom (2, 3, ... , 8) random
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
+  printNow(gameState)
   naboo(gameState)
              
 #Randomize int numbers to pick room to hide plans in
@@ -109,6 +110,8 @@ def naboo(gameState):
     dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
+    if (chc == None):
+      chc = "exit"
     if chc.isdigit():
       chc = str(chc)
     choice = chc.lower()
@@ -190,6 +193,8 @@ def coruscant(gameState):
     dstChc += "Type \"Dagobah\" to jump to Dagobah\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
+    if (chc == None):
+      chc = "exit"
     if chc.isdigit():
       chc = str(chc)
     choice = chc.lower()
