@@ -14,7 +14,7 @@
 #
 #Object of the game:
 #Travel from planet to planet
-#Look for the secret plants to the Death Star
+#Look for the secret plans to the Death Star
 #Find the Princess (Who is locked up on the Death Star
 #Escape before you run our of turns!
 
@@ -540,8 +540,6 @@ def deathStar(gameState):
       printNow("The nav computer could not interpret your choice. Please try again.")
 
 
-
-
 #############################################
 # room three (Tatooine) function ############
 #############################################
@@ -563,19 +561,19 @@ def userChoice(roomState, gameState, currentRoom):
         choiceStat = true
         exit()
       elif userInput == 'dagobah' and roomState == 'tatooine':
-        printNow("your off to Dagobah...wooosh!")
+        printNow("you're off to Dagobah...wooosh!")
         choiceStat = true
         return('dagobah')
       elif userInput == 'cloudcity' and roomState == 'tatooine':
-        printNow("your off to Cloud City...woosh!")
+        printNow("you're off to Cloud City...woosh!")
         choiceStat = true
         return('cloudcity')
       elif userInput == 'naboo' and roomState == 'tatooine':
-        printNow("your off to Naboo...woosh!")
+        printNow("you're off to Naboo...woosh!")
         choiceStat = true
         return('naboo')
       elif userInput == 'cantina' and roomState == 'tatooine':
-        printNow("I'm thursty, let's go check out the cantina.")
+        printNow("I'm thirsty, let's go check out the cantina.")
         choiceStat = true
         return('cantina')
       elif userInput == 'chat' and roomState == 'cantina':
@@ -586,7 +584,7 @@ def userChoice(roomState, gameState, currentRoom):
         choiceStat = true
         return('leave')
       elif gameState[4] == currentRoom and roomState == 'cantina':
-        printNow("your off to save the Princess on the Death Star...woosh!")
+        printNow("you're off to save the Princess on the Death Star...woosh!")
         choiceStat = true
         return('deathstar')
       else:
@@ -620,7 +618,7 @@ def whereAmI(gameState, roomState, currentRoom):
     roomDescrip =  "\nYou've entered the local cantina.  "
     roomDescrip += "Strangely enough, the bar is virtually empty.  "
     roomDescrip += "\nAt the moment, only the barkeep is around cleaning drink glasses "
-    roomDescrip += "with a scorn look on his face."
+    roomDescrip += "with a scornful look on his face."
     if gameState[1] == true:
       action =  "\nThe princess is looking really pissed at the moment, "
       action += "since you seemed more concerned with hanging out at a bar "
@@ -650,14 +648,13 @@ def whereAmI(gameState, roomState, currentRoom):
       else:
         action += "\n\"Nope, nothing like that 'round here.  "
         action += "Don\'t ask me stupid questions.  Now leave me alone!\""
-      
     elif gameState[0] == false and gameState[1] == false:
       if gameState[3] == currentRoom and gameState[0] == false:
         action += "\n\"You mean these worthless maps?  "
         action += "Some old guy with a lightsaber traded them for a drink.  "
-        action += "I took pitty on the old drunk and agreed on the trade.  "
+        action += "I took pity on the old drunk and agreed on the trade.  "
         action += "You can have them if you want.  "
-        action += "There just collecting dust back here.\"  "
+        action += "They're just collecting dust back here.\"  "
         action += "He hands you the plans.  What luck!"
       else:
         action =  "\n\"Nope, nothing like that around here.  "
@@ -691,6 +688,7 @@ def tatooine(gameState):
 
   currentRoom = 3
   roomState = 'tatooine'
+  #plansRoom, deathStarRoom = randomizeRooms()
   
   dialog(roomState, gameState, currentRoom)
   userResult = userChoice(roomState, gameState, currentRoom)
@@ -712,14 +710,14 @@ def tatooine(gameState):
     if userResult == 'chat' and gameState[3] == currentRoom:
       gameState[1] = true
     if userResult == 'dagobah':
-    	dagobah(gameState)
+      dagobah(gameState)
     elif userResult == 'cloudcity':
-       cloudcity(gameState)
+      cloudcity(gameState)
     elif userResult == 'naboo':
-       naboo(gameState)
+      naboo(gameState)
     elif userResult == 'deathstar':
-       deathstar(gameState)
-
+      deathstar(gameState)
+    
 #############################################
 # room seven (Cloud City) function ##########
 #############################################
@@ -813,7 +811,7 @@ def whereAmI(gameState, roomState, currentRoom):
     roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
     roomDescrip += "happen see any secret Death Star plans around here?\"\n"
     if gameState[1] == true:
-      action =  "\nHe replies: \"Moron, you've got them in your hand, "
+      action =  "\nShe replies: \"Moron, you've got them in your hand, "
       action += "and the princess is right at your side.  "
       action += "If I were you I would get the hell "
       action += "out of here and take her home as quick as possible.\"  "
@@ -831,7 +829,7 @@ def whereAmI(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       if gameState[3] == currentRoom and gameState[0] == false:
         action += "\n\"You mean these worthless maps?  Some old guy with a "
-        action += "lightsaber traded them for a new pair of shoes.  I took pitty "
+        action += "lightsaber traded them for a new pair of shoes.  I took pity "
         action += "on the old drunk and agreed on the trade.  I didn't know what "
         action += "to do with them, so I sewed them into this nice blanket.  "
         action += "You can have them if you want.  It\'s not selling anyway.\"  She "
@@ -850,9 +848,10 @@ def whereAmI(gameState, roomState, currentRoom):
   
   
 def dialog(roomState, gameState, currentRoom):
+
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
-    gameState[2] -= 1
+  	gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI(gameState, roomState, currentRoom)[0]
@@ -892,6 +891,7 @@ def cloudCity(gameState):
     	alderaan(gameState)
     elif userResult == 'deathstar':
     	deathstar(gameState)
+    
     
      
 ##########HOTH FUNCTION (ROOM 5)#########################
