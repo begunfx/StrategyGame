@@ -825,8 +825,8 @@ def whereAmI2(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
-    action += "\nEnter chat to talk to the merchant or type leave" 
-    action += "to got back to the ship."    
+    action += "\nEnter chat to talk to the merchant or type leave " 
+    action += "to go back to the ship."    
   elif roomState == 'chat':
     roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
     roomDescrip += "happen see any secret Death Star plans around here?\"\n"
@@ -924,6 +924,7 @@ def cloudCity(gameState):
     elif userResult == 'deathStar':
     	deathStar(gameState)
     	userResult = 'exit'
+    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
