@@ -740,15 +740,15 @@ def userChoice(roomState, gameState, currentRoom):
         printNow("Time to leave.")
         choiceStat = true
         exit()
-      elif userInput == 'tatooine' and roomState == 'cloudcity':
+      elif userInput == 'tatooine' and roomState == 'cloudCity':
         printNow("your off to Tatooine...wooosh!")
         choiceStat = true
         return('tatooine')
-      elif userInput == 'alderaan' and roomState == 'cloudcity':
+      elif userInput == 'alderaan' and roomState == 'cloudCity':
         printNow("your off to Alderaan...woosh!")
         choiceStat = true
         return('alderaan')
-      elif userInput == 'business' and roomState == 'cloudcity':
+      elif userInput == 'business' and roomState == 'cloudCity':
         printNow("I'm thursty, let's go check out the business.")
         choiceStat = true
         return('business')
@@ -775,7 +775,7 @@ def whereAmI(gameState, roomState, currentRoom):
   options =  "\n Type help to re-display this introduction."
   options += "\nType exit or cancel the dialog box to quit at any time."
   
-  if roomState == 'cloudcity':
+  if roomState == 'cloudCity':
     roomDescrip =  "\nYou have arrived at the main space port on Cloud City.  "
     roomDescrip += "There are space transports currently available to take you "
     roomDescrip += "to Tatooine or Alderaan and the business district nearby."
@@ -807,11 +807,11 @@ def whereAmI(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
-      action += "\nEnter chat to talk to the merchant or type leave."
-      action += "to got back to the ship."    
-    elif roomState == 'chat':
-      roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
-      roomDescrip += "happen see any secret Death Star plans around here?\"\n"
+    action += "\nEnter chat to talk to the merchant or type leave 
+    action += "to got back to the ship."    
+  elif roomState == 'chat':
+    roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
+    roomDescrip += "happen see any secret Death Star plans around here?\"\n"
     if gameState[1] == true:
       action =  "\nHe replies: \"Moron, you've got them in your hand, "
       action += "and the princess is right at your side.  "
@@ -853,7 +853,7 @@ def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
-    gameState[2] -= 1
+  	gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI(gameState, roomState, currentRoom)[0]
@@ -863,10 +863,10 @@ def dialog(roomState, gameState, currentRoom):
   
   printNow(textDisplay)  
 
-def cloudcity(gameState):
+def cloudCity(gameState):
 
   currentRoom = 7
-  roomState = 'cloudcity'
+  roomState = 'cloudCity'
     
   dialog(roomState, gameState, currentRoom)
   userResult = userChoice(roomState, gameState, currentRoom)
@@ -882,7 +882,7 @@ def cloudcity(gameState):
       dialog(userResult, gameState, currentRoom)
       userResult = userChoice(roomState, gameState, currentRoom)
     if userResult == 'leave':
-      roomState = 'cloudcity'
+      roomState = 'cloudCity'
       dialog(roomState, gameState, currentRoom)
       userResult = userChoice(roomState, gameState, currentRoom)
     if userResult == 'chat' and gameState[3] == currentRoom:
@@ -893,6 +893,7 @@ def cloudcity(gameState):
     	alderaan(gameState)
     elif userResult == 'deathstar':
     	deathstar(gameState)
+    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
