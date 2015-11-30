@@ -721,7 +721,7 @@ def tatooine(gameState):
 #############################################
 # room seven (Cloud City) function ##########
 #############################################
-def userChoice(roomState, gameState, currentRoom):
+def userChoice2(roomState, gameState, currentRoom):
   choiceStat = false
   while choiceStat == false:
     userInput = requestString("Make your choice: ")
@@ -765,7 +765,7 @@ def userChoice(roomState, gameState, currentRoom):
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
         
-def whereAmI(gameState, roomState, currentRoom):
+def whereAmI2(gameState, roomState, currentRoom):
   options = ""
   roomDescrip = ""
   action = ""
@@ -854,9 +854,9 @@ def dialog(roomState, gameState, currentRoom):
   	gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
-  options = whereAmI(gameState, roomState, currentRoom)[0]
-  roomDescrip = whereAmI(gameState, roomState, currentRoom)[1]
-  action = whereAmI(gameState, roomState, currentRoom)[2]
+  options = whereAmI2(gameState, roomState, currentRoom)[0]
+  roomDescrip = whereAmI2(gameState, roomState, currentRoom)[1]
+  action = whereAmI2(gameState, roomState, currentRoom)[2]
   textDisplay =  roomDescrip + action + options
   
   printNow(textDisplay)  
@@ -867,22 +867,22 @@ def cloudCity(gameState):
   roomState = 'cloudCity'
     
   dialog(roomState, gameState, currentRoom)
-  userResult = userChoice(roomState, gameState, currentRoom)
+  userResult = userChoice2(roomState, gameState, currentRoom)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
       dialog(roomState, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'business':
       roomState = 'business'
       dialog(roomState, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'chat':
       dialog(userResult, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'leave':
       roomState = 'cloudCity'
       dialog(roomState, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'chat' and gameState[3] == currentRoom:
       gameState[1] = true  
     if userResult == 'tatooine':
