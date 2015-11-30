@@ -716,7 +716,7 @@ def tatooine(gameState):
     if userResult == 'dagobah':
       dagobah(gameState)
     elif userResult == 'cloudcity':
-      cloudcity(gameState)
+      cloudCity(gameState)
     elif userResult == 'naboo':
       naboo(gameState)
     elif userResult == 'deathStar':
