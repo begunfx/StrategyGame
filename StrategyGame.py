@@ -851,7 +851,7 @@ def dialog2(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
-  	gameState[2] -= 1
+    gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI2(gameState, roomState, currentRoom)[0]
@@ -1039,4 +1039,3 @@ def dagobah(gameState): #room 6
       check = false
     else:
       printNow("I don't recognize that statement.")
-starWars()
