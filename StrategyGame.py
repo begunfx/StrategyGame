@@ -807,7 +807,7 @@ def whereAmI(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
-    action += "\nEnter chat to talk to the merchant or type leave 
+    action += "\nEnter chat to talk to the merchant or type leave" 
     action += "to got back to the ship."    
   elif roomState == 'chat':
     roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
@@ -850,10 +850,9 @@ def whereAmI(gameState, roomState, currentRoom):
   
   
 def dialog(roomState, gameState, currentRoom):
-
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
-  	gameState[2] -= 1
+    gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI(gameState, roomState, currentRoom)[0]
