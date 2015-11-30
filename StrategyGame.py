@@ -30,7 +30,6 @@ def starWars():
   # gameState[3] = plansRoom (2, 3, ... , 8) random
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
-  printNow(gameState)
   naboo(gameState)
              
 #Randomize int numbers to pick room to hide plans in
