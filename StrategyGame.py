@@ -586,7 +586,7 @@ def userChoice(roomState, gameState, currentRoom):
       elif gameState[4] == currentRoom and roomState == 'cantina':
         printNow("you're off to save the Princess on the Death Star...woosh!")
         choiceStat = true
-        return('deathstar')
+        return('deathStar')
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
@@ -715,8 +715,9 @@ def tatooine(gameState):
       cloudcity(gameState)
     elif userResult == 'naboo':
       naboo(gameState)
-    elif userResult == 'deathstar':
-      deathstar(gameState)
+    elif userResult == 'deathStar':
+      deathStar(gameState)
+    
     
 #############################################
 # room seven (Cloud City) function ##########
@@ -760,7 +761,7 @@ def userChoice2(roomState, gameState, currentRoom):
       elif gameState[4] == currentRoom and roomState == 'business':
         printNow("your off to save the Princess on the Death Star...woosh!")
         choiceStat = true
-        return('deathstar')
+        return('deathStar')
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
@@ -889,8 +890,9 @@ def cloudCity(gameState):
     	tatooine(gameState)
     elif userResult == 'alderaan':
     	alderaan(gameState)
-    elif userResult == 'deathstar':
-    	deathstar(gameState)
+    elif userResult == 'deathStar':
+    	deathStar(gameState)
+    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
