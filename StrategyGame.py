@@ -566,7 +566,7 @@ def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Tatooine ---------------")
   if gameState[1] == 1:
-  	gameState[2] -= 1
+    gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI(gameState, roomState, currentRoom)[0]
@@ -603,11 +603,11 @@ def tatooine(gameState):
     if userResult == 'dagobah':
     	dagobah(gameState)
     elif userResult == 'cloudcity':
-		cloudcity(gameState)
+       cloudcity(gameState)
     elif userResult == 'naboo':
-		naboo(gameState)
+       naboo(gameState)
     elif userResult == 'deathstar':
-		deathstar(gameState)
+       deathstar(gameState)
 
 #############################################
 # room seven (Cloud City) function ##########
@@ -696,11 +696,11 @@ def whereAmI(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
-    action += "\nEnter chat to talk to the merchant or type leave 
-    action += "to got back to the ship."    
-  elif roomState == 'chat':
-    roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
-    roomDescrip += "happen see any secret Death Star plans around here?\"\n"
+      action += "\nEnter chat to talk to the merchant or type leave."
+      action += "to got back to the ship."    
+    elif roomState == 'chat':
+      roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
+      roomDescrip += "happen see any secret Death Star plans around here?\"\n"
     if gameState[1] == true:
       action =  "\nHe replies: \"Moron, you've got them in your hand, "
       action += "and the princess is right at your side.  "
@@ -742,7 +742,7 @@ def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
   if gameState[1] == 1:
-  	gameState[2] -= 1
+    gameState[2] -= 1
     printNow("You have %d of 6 turns remaining\n" % gameState[2])
     
   options = whereAmI(gameState, roomState, currentRoom)[0]
@@ -782,4 +782,153 @@ def cloudcity(gameState):
     	alderaan(gameState)
     elif userResult == 'deathstar':
     	deathstar(gameState)
+     
+##########HOTH FUNCTION (ROOM 5)#########################
+
+def hoth(gameState): #room 5
+  check = true
+  roomDesc = "\n--------------- Hoth Spaceport ---------------\n"
+  roomDesc += "Hoth is the sixth planet in the hoth system\n"
+  roomDesc += "It is a frozen world covered in snow and ice.\n"
+  roomDesc += "The wampa and the tauntaun are both native to hoth.\n"
+  roomDesc += "A newly deceased tauntaun can be cut open to \n"
+  roomDesc += "to make a great temporary refuge from the cold.\n"
+
+  
+  #if the player has the plans and princess, decrement turns, tell player how many turns
+  if (gameState[0] == true and #hasPlans 
+  gameState[1] == true): #hasPrincess
+    gameState[2] = gameState[2] - 1
+  if gameState[2] > 1:
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n"
+  elif gameState[2] == 1:
+    roomDesc += "\nYou only have 1 turn left.\n" 
+  elif gameState[2] == 0:
+      roomDesc += "You lose"
+      return
+  printNow("Type \"quit\" to exit the game\n")
+  printNow(roomDesc)
+  
+  while check == true:
+    # if the player doesn't have plans, and this is the planet with the plans, tell the player
+    if (gameState[0] == false and #!hasPlans 
+    gameState[3] == int(5)): #this planet has the plans
+       printNow("\nThe plans are here!\n")
+       printNow("Type \"get plans\" to get the plans.")
     
+    #if the player has plans, doesn't have princess, and the death star is near, tell the player
+    if (gameState[0] == true and #hasPlans
+    gameState[1] == false and #!hasPrincess
+    gameState[4] == int(5)): #death star is near
+      printNow("Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n")
+  
+    option = ("What is your choice?\n")
+    printNow("Type \"Coruscant\" to jump to Coruscant")
+    printNow("Type \"Endor\" to jump to Endor\n")
+        
+    choice = requestString(option)
+    choice = choice.lower()
+    
+    
+    if choice == "coruscant":
+      coruscant(gameState)
+      check = false
+    elif choice == "endor":
+      endor(gameState)
+      check = false
+    elif (choice == "get plans" and
+    gameState[0] == false and #player doesn't already have plans
+    gameState[3] == int(5)):#this is the plans room
+      printNow("You got the plans, now you can resuce the princess!")
+      printNow("Go find the Death Star!")
+      gameState[0] = true #hasPlans
+      check = false
+      dagobah(gameState)
+    elif (choice == "save princess" and 
+    gameState[0] == true and #hasPlans
+    gameState[1] == false and #!hasPrincess
+    gameState[4] == int(5)): #death star is near Dagobah
+      deathStar(gameState)
+      check = false
+    elif choice == "quit":
+      printNow("\nBye Jar Jar\n")
+      return
+      check = false
+    else:
+      printNow("That statement does not compute.")
+      
+##########DAGOBAH FUNCTION (ROOM 6)#########################
+
+def dagobah(gameState): #room 6
+  check = true
+  roomDesc = "\n--------------- Dagobah Spaceport ---------------\n"
+  roomDesc += "Dagobah is a world of murky swamps,\n"
+  roomDesc += "steaming bayous, and petrified forests.\n"
+  roomDesc += "The great jedi Yoda lives near a cave\n"
+  roomDesc += "infused with the dark side of the Force\n"
+  roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
+
+  
+  #if the player has the plans and princess, 
+  if (gameState[0] == true and #hasPlans 
+  gameState[1] == true): #hasPrincess
+    gameState[2] = gameState[2] - 1 #decrement turnsLeft
+  if gameState[2] > 1: #tell player how many turns left
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n"
+  elif gameState[2] == 1:
+    roomDesc += "\nYou only have 1 turn left.\n" 
+  elif gameState[2] == 0:
+      roomDesc += "You lose"
+      return
+  printNow("Type \"quit\" to exit the game\n")
+  printNow(roomDesc)
+  
+  while check == true:
+    # if the player doesn't have plans, and this is the planet with the plans, tell the player
+    if (gameState[0] == false and #!hasPlans 
+    gameState[3] == int(6)): #this planet has the plans
+       printNow("\nThe plans are here!\n")
+       printNow("Type \"get plans\" to get the plans.")
+    
+    #if the player has plans, doesn't have princess, and the death star is near, tell the player
+    if (gameState[0] == true and #hasPlans
+    gameState[1] == false and #!hasPrincess
+    gameState[4] == int(6)): #death star is near
+      printNow("Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n")
+  
+  
+    option = ("What is your choice?\n")
+    printNow("Type \"coruscant\" to jump to Coruscant")
+    printNow("Type \"tatooine\" to jump to Tatooine\n")
+        
+    choice = requestString(option)
+    choice = choice.lower()
+    
+    #printNow(choice) take this out
+    
+    if choice == "coruscant":
+      coruscant(gameState)
+      check = false
+    elif choice == "tatooine":
+      tatooine(gameState)
+      check = false
+    elif (choice == "get plans" and
+    gameState[0] == false and #player doesn't already have plans
+    gameState[3] == int(6)):#this is the plans room
+      printNow("You got the plans, now you can resuce the princess!")
+      printNow("Go find the Death Star!")
+      gameState[0] = true #hasPlans
+      check = false
+      dagobah(gameState)
+    elif (choice == "save princess" and 
+    gameState[0] == true and #hasPlans
+    gameState[1] == false and #!hasPrincess
+    gameState[4] == int(6)): #death star is near Dagobah
+      deathStar(gameState)
+      check = false
+    elif choice == "quit":
+      printNow("\nBye Jar Jar\n")
+      return
+      check = false
+    else:
+      printNow("That statement does not compute.")
