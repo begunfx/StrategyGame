@@ -715,12 +715,16 @@ def tatooine(gameState):
       gameState[1] = true
     if userResult == 'dagobah':
       dagobah(gameState)
+      userResult = 'exit'
     elif userResult == 'cloudcity':
       cloudCity(gameState)
+      userResult = 'exit'
     elif userResult == 'naboo':
       naboo(gameState)
+      userResult = 'exit'
     elif userResult == 'deathStar':
       deathStar(gameState)
+      userResult = 'exit'
     
     
 #############################################
@@ -892,10 +896,13 @@ def cloudCity(gameState):
       gameState[1] = true  
     if userResult == 'tatooine':
     	tatooine(gameState)
+    	userResult = 'exit'
     elif userResult == 'alderaan':
     	alderaan(gameState)
+    	userResult = 'exit'
     elif userResult == 'deathStar':
     	deathStar(gameState)
+    	userResult = 'exit'
     
      
 ##########HOTH FUNCTION (ROOM 5)#########################
