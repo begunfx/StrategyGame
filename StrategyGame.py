@@ -930,3 +930,4 @@ def dagobah(gameState): #room 6
       check = false
     else:
       printNow("I don't recognize that statement.")
+starWars()
