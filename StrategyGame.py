@@ -51,6 +51,10 @@ def exit():
   printNow("Loser, The Force was not with you!!!")
   return
 
+# end function
+def end():
+  return false
+
 #############################################
 # room one (Naboo) function #################
 #############################################
@@ -70,7 +74,7 @@ def naboo(gameState):
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
     printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
     printNow("\nThe Force is with with you!!!\n")
-    check = false
+    check = end()
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     fndPlns = "\nHowever, before you take off, Valenthyne Farfalla\n"
@@ -586,7 +590,7 @@ def userChoice(roomState, gameState, currentRoom):
       elif gameState[4] == currentRoom and roomState == 'cantina':
         printNow("you're off to save the Princess on the Death Star...woosh!")
         choiceStat = true
-        return('deathstar')
+        return('deathStar')
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
@@ -712,11 +716,12 @@ def tatooine(gameState):
     if userResult == 'dagobah':
       dagobah(gameState)
     elif userResult == 'cloudcity':
-      cloudcity(gameState)
+      cloudCity(gameState)
     elif userResult == 'naboo':
       naboo(gameState)
-    elif userResult == 'deathstar':
-      deathstar(gameState)
+    elif userResult == 'deathStar':
+      deathStar(gameState)
+    
     
 #############################################
 # room seven (Cloud City) function ##########
@@ -760,7 +765,7 @@ def userChoice2(roomState, gameState, currentRoom):
       elif gameState[4] == currentRoom and roomState == 'business':
         printNow("your off to save the Princess on the Death Star...woosh!")
         choiceStat = true
-        return('deathstar')
+        return('deathStar')
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
@@ -889,8 +894,9 @@ def cloudCity(gameState):
     	tatooine(gameState)
     elif userResult == 'alderaan':
     	alderaan(gameState)
-    elif userResult == 'deathstar':
-    	deathstar(gameState)
+    elif userResult == 'deathStar':
+    	deathStar(gameState)
+    
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
