@@ -374,7 +374,7 @@ def endor(gameState):
     roomDescrip += "rolling toward you and beeping.  The gold protocol droid\n"
     roomDescrip += "next to him calls for you to wait.\n"
     
-    choiceDescrip = cDescrip + "Type \"Droids\" to see what the droids have to say\n"
+    choiceDescrip = "Type \"Droids\" to see what the droids have to say\n"
     
   #if you have the plans, no princess, and this is the planet with the Death Star orbiting, notify
   if gameState[0] == true and gameState[1] == false and gameState[4] == 8:
@@ -383,7 +383,7 @@ def endor(gameState):
     roomDescrip += "orbiting for the past several hours. You can finally\n"
     roomDescrip += "rescue Princess Leia!\n"
     
-    choiceDescrip = cDescrip + "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
+    choiceDescrip = "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
   
   #if you have the plans and princess, notify and deduct turns left
   if gameState[0] == true and gameState[1] == true:
