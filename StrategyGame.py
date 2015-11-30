@@ -51,10 +51,6 @@ def exit():
   printNow("Loser, The Force was not with you!!!")
   return
 
-# end function
-def end():
-  return false
-
 #############################################
 # room one (Naboo) function #################
 #############################################
@@ -74,7 +70,7 @@ def naboo(gameState):
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
     printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
     printNow("\nThe Force is with with you!!!\n")
-    check = end()
+    check = false
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
     fndPlns = "\nHowever, before you take off, Valenthyne Farfalla\n"
