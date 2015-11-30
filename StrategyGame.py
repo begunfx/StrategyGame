@@ -804,31 +804,30 @@ def hoth(gameState): #room 5
   elif gameState[2] == 1:
     roomDesc += "\nYou only have 1 turn left.\n" 
   elif gameState[2] == 0:
-      roomDesc += "You lose"
+      roomDesc += "You did not exit in time.  You lose."
       return
-  printNow("Type \"quit\" to exit the game\n")
   printNow(roomDesc)
   
   while check == true:
+    option = "What is your choice?\n"
     # if the player doesn't have plans, and this is the planet with the plans, tell the player
     if (gameState[0] == false and #!hasPlans 
     gameState[3] == int(5)): #this planet has the plans
-       printNow("\nThe plans are here!\n")
-       printNow("Type \"get plans\" to get the plans.")
+       option += "The plans are here!\n"
+       option += "Type \"get plans\" to get the plans.\n"
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
     gameState[4] == int(5)): #death star is near
-      printNow("Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n")
+      option += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
   
-    option = ("What is your choice?\n")
-    printNow("Type \"Coruscant\" to jump to Coruscant")
-    printNow("Type \"Endor\" to jump to Endor\n")
+    option += "Type \"Coruscant\" to jump to Coruscant.\n"
+    option += "Type \"Endor\" to jump to Endor.\n"
+    option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
     choice = choice.lower()
-    
     
     if choice == "coruscant":
       coruscant(gameState)
@@ -850,12 +849,12 @@ def hoth(gameState): #room 5
     gameState[4] == int(5)): #death star is near Dagobah
       deathStar(gameState)
       check = false
-    elif choice == "quit":
-      printNow("\nBye Jar Jar\n")
+    elif choice == "exit":
+      printNow("Bye Jar Jar")
       return
       check = false
     else:
-      printNow("That statement does not compute.")
+      printNow("I don't recognize that statement.")
       
 ##########DAGOBAH FUNCTION (ROOM 6)#########################
 
@@ -864,7 +863,7 @@ def dagobah(gameState): #room 6
   roomDesc = "\n--------------- Dagobah Spaceport ---------------\n"
   roomDesc += "Dagobah is a world of murky swamps,\n"
   roomDesc += "steaming bayous, and petrified forests.\n"
-  roomDesc += "The great jedi Yoda lives near a cave\n"
+  roomDesc += "The great Jedi Yoda lives near a cave\n"
   roomDesc += "infused with the dark side of the Force\n"
   roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
 
@@ -878,33 +877,32 @@ def dagobah(gameState): #room 6
   elif gameState[2] == 1:
     roomDesc += "\nYou only have 1 turn left.\n" 
   elif gameState[2] == 0:
-      roomDesc += "You lose"
+      roomDesc += "You exit in time.  You lose."
       return
-  printNow("Type \"quit\" to exit the game\n")
   printNow(roomDesc)
   
   while check == true:
+    option = ""
     # if the player doesn't have plans, and this is the planet with the plans, tell the player
     if (gameState[0] == false and #!hasPlans 
     gameState[3] == int(6)): #this planet has the plans
-       printNow("\nThe plans are here!\n")
-       printNow("Type \"get plans\" to get the plans.")
+      option += "\nThe plans are here!\n"
+      option += "Type \"get plans\" to get the plans."
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
     gameState[4] == int(6)): #death star is near
-      printNow("Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n")
+      option += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
   
   
-    option = ("What is your choice?\n")
-    printNow("Type \"coruscant\" to jump to Coruscant")
-    printNow("Type \"tatooine\" to jump to Tatooine\n")
+    option += "What is your choice?\n"
+    option += "Type \"Coruscant\" to jump to Coruscant.\n"
+    option += "Type \"Tatooine\" to jump to Tatooine.\n"
+    option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
     choice = choice.lower()
-    
-    #printNow(choice) take this out
     
     if choice == "coruscant":
       coruscant(gameState)
@@ -926,9 +924,9 @@ def dagobah(gameState): #room 6
     gameState[4] == int(6)): #death star is near Dagobah
       deathStar(gameState)
       check = false
-    elif choice == "quit":
-      printNow("\nBye Jar Jar\n")
+    elif choice == "exit":
+      printNow("Bye Jar Jar")
       return
       check = false
     else:
-      printNow("That statement does not compute.")
+      printNow("I don't recognize that statement.")
