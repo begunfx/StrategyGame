@@ -107,6 +107,7 @@ def naboo(gameState):
     dstChc += "Type \"Coruscant\" to jump to Coruscant\n"
     dstChc += "Type \"Tatooine\" to jump to Tatooine\n"
     dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
+    dstChc += "Type \"Help\" for game info.\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
     if (chc == None):
@@ -123,6 +124,9 @@ def naboo(gameState):
     elif choice == "alderaan": # for Alderaan
       check = false
       alderaan(gameState)
+    elif choice == "help": # for Help
+      check = false
+      help()
     elif chc == "exit":
       exit()
       check = false
@@ -190,6 +194,7 @@ def coruscant(gameState):
     dstChc += "Type \"Alderaan\" to jump to Alderaan\n"
     dstChc += "Type \"Hoth\" to jump to Hoth\n"
     dstChc += "Type \"Dagobah\" to jump to Dagobah\n"
+    dstChc += "Type \"Help\" for game info.\n"
     dstChc += "or just Type \"EXIT\" to quit."
     chc = requestString(dstChc)
     if (chc == None):
@@ -209,6 +214,9 @@ def coruscant(gameState):
     elif choice == "dagobah": # for Dagobah
       check = false
       dagobah(gameState)
+    elif choice == "help": # for Help
+      check = false
+      help()
     elif chc == "exit":
       exit()
       check = false
