@@ -1080,6 +1080,7 @@ def hoth(gameState): #room 5
   
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Endor\" to jump to Endor.\n"
+    option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
@@ -1115,7 +1116,8 @@ def hoth(gameState): #room 5
       printNow("Bye Jar Jar")
       return
       check = false
-    
+    elif choice == "help":
+      help()   
     else:
       printNow("I don't recognize that statement.")
       
@@ -1162,6 +1164,7 @@ def dagobah(gameState): #room 6
     option += "What is your choice?\n"
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Tatooine\" to jump to Tatooine.\n"
+    option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
         
     choice = requestString(option)
@@ -1196,5 +1199,7 @@ def dagobah(gameState): #room 6
       printNow("Bye Jar Jar")
       return
       check = false
+    elif choice == "help":
+      help()  
     else:
       printNow("I don't recognize that statement.")
