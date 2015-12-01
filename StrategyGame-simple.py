@@ -17,7 +17,7 @@
 #Look for the secret plans to the Death Star
 
 # #Put all imports here please
-# import random
+import random
 
 # Star Wars game function
 def starWars():
@@ -336,3 +336,120 @@ def endor(gameState):
     else:
       printNow("\nThe nav computer could not interpret your choice. Please try again.\n")
       choice = requestString(choiceDescrip)
+#gameState[0] = player has plans
+#gameState[1] = plans room
+
+
+##########HOTH FUNCTION (ROOM 5)#########################
+
+def hoth(gameState): #room 5
+  check = true
+  roomDesc = "\n--------------- Hoth Spaceport ---------------\n"
+  roomDesc += "Hoth is the sixth planet in the hoth system\n"
+  roomDesc += "It is a frozen world covered in snow and ice.\n"
+  roomDesc += "The wampa and the tauntaun are both native to hoth.\n"
+  roomDesc += "A newly deceased tauntaun can be cut open to \n"
+  roomDesc += "to make a great temporary refuge from the cold.\n"
+
+    
+  while check == true:
+    option = "What is your choice?\n"
+    # if the player doesn't have plans, and this is the planet with the plans, tell the player
+    if (gameState[0] == false and # does not have plans 
+    gameState[1] == int(5)): #this planet has the plans
+       option += "The plans are here!\n"
+       option += "Type \"pickup plans\" to get the plans.\n"
+    
+  
+    option += "Type \"Coruscant\" to jump to Coruscant.\n"
+    option += "Type \"Endor\" to jump to Endor.\n"
+    option += "Type \"Help\" to re-display this introduction.\n"
+    option += "Type \"Exit\" to quit."
+        
+    choice = requestString(option)
+    
+    if choice == None:
+      printNow("Bye Jar Jar")
+      return
+      check = false
+    
+    choice = choice.lower()
+    
+    if choice == "coruscant":
+      coruscant(gameState)
+      check = false
+    elif choice == "endor":
+      endor(gameState)
+      check = false
+    elif (choice == "pickup plans" and
+    gameState[0] == false and #player doesn't already have plans
+    gameState[1] == int(5)):#this is the plans room
+      printNow("You found the plans!")
+      gameState[0] = true #hasPlans
+      check = false
+      hoth(gameState)
+    elif choice == "exit":
+      printNow("Bye Jar Jar")
+      return
+      check = false
+    elif choice == "help":
+      help()   
+    else:
+      printNow("I don't recognize that statement.")
+      
+##########DAGOBAH FUNCTION (ROOM 6)#########################
+
+def dagobah(gameState): #room 6
+  check = true
+  roomDesc = "\n--------------- Dagobah Spaceport ---------------\n"
+  roomDesc += "Dagobah is a world of murky swamps,\n"
+  roomDesc += "steaming bayous, and petrified forests.\n"
+  roomDesc += "The great Jedi Yoda lives near a cave\n"
+  roomDesc += "infused with the dark side of the Force\n"
+  roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
+
+  
+  while check == true:
+    option = "What is your choice?\n"
+    # if the player doesn't have plans, and this is the planet with the plans, tell the player
+    if (gameState[0] == false and # does not have plans 
+    gameState[1] == int(6)): #this planet has the plans
+       option += "The plans are here!\n"
+       option += "Type \"pickup plans\" to get the plans.\n"
+    
+  
+    option += "Type \"Coruscant\" to jump to Coruscant.\n"
+    option += "Type \"Endor\" to jump to Endor.\n"
+    option += "Type \"Help\" to re-display this introduction.\n"
+    option += "Type \"Exit\" to quit."
+        
+    choice = requestString(option)
+    
+    if choice == None:
+      printNow("Bye Jar Jar")
+      return
+      check = false
+    
+    choice = choice.lower()
+    
+    if choice == "coruscant":
+      coruscant(gameState)
+      check = false
+    elif choice == "endor":
+      endor(gameState)
+      check = false
+    elif (choice == "pickup plans" and
+    gameState[0] == false and #player doesn't already have plans
+    gameState[1] == int(6)):#this is the plans room
+      printNow("You found the plans!")
+      gameState[0] = true #hasPlans
+      check = false
+      dagobah(gameState)
+    elif choice == "exit":
+      printNow("Bye Jar Jar")
+      return
+      check = false
+    elif choice == "help":
+      help()   
+    else:
+      printNow("I don't recognize that statement.")
