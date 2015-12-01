@@ -23,6 +23,8 @@ import random
 def starWars():
   plansRoom = random.randint(2, 8)  
   gameState = [false, plansRoom]
+  printNow("\n\n\n\n\n--------------- STAR WARS ---------------")
+  printNow("---------- The Python Adventures ----------")
   help()
   naboo(gameState)
 
@@ -33,7 +35,7 @@ def exit():
 
   # help function
 def help():
-  printNow("A long time ago in a Galaxy far, far away...\n")
+  printNow("\nA long time ago in a Galaxy far, far away...\n")
   printNow("It is a time of great unrest as the evil Galactic Empire")
   printNow("continues to conquer, ensalve and ravage the free planets of")
   printNow("the galaxy. However, small bands of rebels have banded together") 
@@ -44,8 +46,8 @@ def help():
   printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
   printNow("On each world, you may jump to other select worlds by typing in one of the choices given.")
   printNow("You need to pick up the plans to the Death Star to stop the Empire.\n")
-  printNow("Type help at any time to redisplay this introduction.")
-  printNow("Type exit to quit the game at any time.\n")
+  printNow("Type \"help\" at any time to redisplay this introduction.")
+  printNow("Type \"exit\" to quit the game at any time.\n")
 
 #############################################
 # room one (Naboo) function #################
@@ -336,8 +338,6 @@ def endor(gameState):
     else:
       printNow("\nThe nav computer could not interpret your choice. Please try again.\n")
       choice = requestString(choiceDescrip)
-#gameState[0] = player has plans
-#gameState[1] = plans room
 
 
 #############################################
@@ -696,7 +696,7 @@ def hoth(gameState): #room 5
   roomDesc += "The wampa and the tauntaun are both native to hoth.\n"
   roomDesc += "A newly deceased tauntaun can be cut open to \n"
   roomDesc += "to make a great temporary refuge from the cold.\n"
-
+  printNow(roomDesc)
     
   while check == true:
     option = "What is your choice?\n"
@@ -753,6 +753,7 @@ def dagobah(gameState): #room 6
   roomDesc += "The great Jedi Yoda lives near a cave\n"
   roomDesc += "infused with the dark side of the Force\n"
   roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
+  printNow(roomDesc)
 
   
   while check == true:
@@ -765,7 +766,7 @@ def dagobah(gameState): #room 6
     
   
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
-    option += "Type \"Endor\" to jump to Endor.\n"
+    option += "Type \"Tatooine\" to jump to Tatooine.\n"
     option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
         
@@ -781,8 +782,8 @@ def dagobah(gameState): #room 6
     if choice == "coruscant":
       coruscant(gameState)
       check = false
-    elif choice == "endor":
-      endor(gameState)
+    elif choice == "tatooine":
+      tatooine(gameState)
       check = false
     elif (choice == "pickup plans" and
     gameState[0] == false and #player doesn't already have plans
