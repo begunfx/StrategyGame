@@ -340,6 +340,352 @@ def endor(gameState):
 #gameState[1] = plans room
 
 
+#############################################
+# room three (Tatooine) function ############
+#############################################
+#Function to grab input choices and display game play options
+#In requestString dialog box
+#return user entered input to be used in other functions
+#only allow certain user options depending on what part of the planet gameplay
+#user is in.
+def userChoice(roomState, gameState, currentRoom, dialogDisplay):
+  choiceStat = false
+  while choiceStat == false:
+    userInput = requestString(dialogDisplay)
+    if userInput == None:
+      printNow("Okay, I guess you want to leave the game...Bye!")
+      choiceStat = true
+      exit()
+    else:
+      userInput = userInput.lower()
+      if userInput == 'help':
+        return('help')
+        choiceStat = false
+      elif userInput == 'exit':
+        printNow("Time to leave.")
+        choiceStat = true
+        exit()
+      elif userInput == 'dagobah' and roomState == 'tatooine':
+        printNow("you're off to Dagobah...wooosh!")
+        choiceStat = true
+        return('dagobah')
+      elif userInput == 'cloud city' and roomState == 'tatooine':
+        printNow("you're off to Cloud City...woosh!")
+        choiceStat = true
+        return('cloud city')
+      elif userInput == 'naboo' and roomState == 'tatooine':
+        printNow("you're off to Naboo...woosh!")
+        choiceStat = true
+        return('naboo')
+      elif userInput == 'cantina' and roomState == 'tatooine':
+        printNow("I'm thirsty, let's go check out the cantina.")
+        choiceStat = true
+        return('cantina')
+      elif userInput == 'chat' and roomState == 'cantina':
+        choiceStat = true 
+        return('chat')  
+      elif userInput == 'leave' and roomState == 'cantina':
+        printNow("\nYou've left the cantina.")
+        choiceStat = true
+        return('leave')
+      else:
+        printNow("The nav computer could not interpret your choice. Please try again.")
+        choiceStat = false
+
+#Establish where the user is on current planet and return appropriate dialog        
+def whereAmI(gameState, roomState, currentRoom):
+  options = ""
+  uDialogOptions = ""
+  roomDescrip = ""
+  action = ""
+  uDialogAction = ""
+  
+  options =  "\n Type \"help\" to re-display this introduction."
+  options += "\nType \"exit\" or cancel the dialog box to quit at any time."
+  uDialogOptions = options
+  
+  if roomState == 'tatooine':
+    roomDescrip =  "\nYou have arrived at Mos Isley Spaceport on Tatooine.  "  
+    roomDescrip += "There are space transports currently available to take you to Dagobah, "
+    roomDescrip += "Cloud City or Naboo and a cantina nearby."
+    if gameState[0] == true:
+      action =  "\nYou have the secret plans, but you might want to check out the Cantina, "
+      action += "and see if anyone can help you find the Death Star."
+    elif gameState[0] == false:
+      action =  "\nSince your mission is to find the secret plans for the Death star, "
+      action += "you might want to ask around a little bit and see if anyone can help you."
+    action += "\nEnter \"Dagobah\", \"Cloud City\" or \"Naboo\" to move on to another planet or \ntype "
+    uDialogAction = "\nEnter \"Dagobah\", \"Cloud City\" or \"Naboo\" to move on to another planet or \ntype "
+    action += "\"Cantina\" to go into the bar nearby and talk to some locals"
+    uDialogAction += "\"Cantina\" to go into the bar nearby and talk to some locals" 
+  elif roomState == 'cantina':
+    roomDescrip =  "\nYou've entered the local cantina.  "
+    roomDescrip += "Strangely enough, the bar is virtually empty.  "
+    roomDescrip += "\nAt the moment, only the barkeep is around cleaning drink glasses "
+    roomDescrip += "with a scornful look on his face."
+    if gameState[0] == true:
+      action = "\nYou might want to ask the barkeep if he knows how to get to the Death Star."
+    elif gameState[0] == false:
+      action = "\nHe's staring right at you.  Now is your chance to ask him for some help."
+    action += "\nEnter \"chat\" to ask the barkeep a question or type \"leave\" to exit the cantina."
+    uDialogAction = "\nEnter \"chat\" to ask the barkeep a question or type \"leave\" to exit the cantina."   
+  elif roomState == 'chat':
+    roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret "
+    roomDescrip += "Death Star plans around here?\""
+    if gameState[0] == true:
+      action =  "\nHe replies: \"Moron, you've got them in your hand.\"  "
+      action += "You reply with a look of embarrassment on your face: \"Sorry, I mean "
+      action += "do you know of a way to get to the Death Star?\""
+      action += "\n\"Nope, nothing like that 'round here.  "
+      action += "Don\'t ask me stupid questions.  Now leave me alone!\""
+    elif gameState[1] == currentRoom and gameState[0] == false:
+      action += "\n\"You mean these worthless maps?  "
+      action += "Some old guy with a lightsaber traded them for a drink.  "
+      action += "I took pity on the old drunk and agreed on the trade.  "
+      action += "You can have them if you want.  "
+      action += "They're just collecting dust back here.\"  "
+      action += "He hands you the plans.  What luck!"
+    else:
+      action =  "\n\"Nope, nothing like that around here.  "
+      action += "You may want to check out one of the nearby systems.  "
+      action += "Might have better luck.\"" 
+    action += "\nType \"leave\" to exit the bar"
+    uDialogAction += "\nType \"leave\" to exit the bar" 
+  return(options, roomDescrip, action, gameState, uDialogOptions, uDialogAction)
+  
+#Function to display chosen dialog 
+def dialog(roomState, gameState, currentRoom):
+
+  printNow("\n--------------- Tatooine ---------------")
+  
+  allDialog =  whereAmI(gameState, roomState, currentRoom)
+  
+  options = allDialog[0]
+  roomDescrip = allDialog[1]
+  action = allDialog[2]
+  textDisplay =  roomDescrip + action + options
+  
+  uDialogOptions = allDialog[4]
+  uDialogAction = allDialog[5]
+  dialogDisplay = uDialogAction + uDialogOptions
+  
+  printNow(textDisplay)
+  return(dialogDisplay)  
+
+#main planet function for tatooine()
+#set's current room number as a variable
+#set's roomState variable to tatooine to be used later
+def tatooine(gameState):
+
+  currentRoom = 3
+  roomState = 'tatooine'
+ 
+ #execute dialog depending on user input
+ #if another planet is choosen, exit while loop and off to other external function    
+  uiDialog = dialog(roomState, gameState, currentRoom)
+  userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
+  while userResult != 'exit' and userResult != None:
+    if userResult == 'help':
+      help()
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'cantina':
+      roomState = 'cantina'
+      uiDialog = dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'chat':
+      uiDialog = dialog(userResult, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'leave':
+      roomState = 'tatooine'
+      uiDialog = dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'chat' and gameState[1] == currentRoom:
+      gameState[0] = true
+    if userResult == 'dagobah':
+      dagobah(gameState)
+      userResult = 'exit'
+    elif userResult == 'cloud city':
+      cloudCity(gameState)
+      userResult = 'exit'
+    elif userResult == 'naboo':
+      naboo(gameState)
+      userResult = 'exit'
+ 
+#############################################
+# room seven (Cloud City) function ##########
+############################################# 
+#Function to grab input choices and display game play options
+#In requestString dialog box
+#return user entered input to be used in other functions
+#only allow certain user options depending on what part of the planet gameplay
+#user is in.
+def userChoice2(roomState, gameState, currentRoom, dialogDisplay):
+  choiceStat = false
+  while choiceStat == false:
+    userInput = requestString(dialogDisplay)
+    if userInput == None:
+      printNow("Okay, I guess you want to leave the game...Bye!")
+      choiceStat = true
+      exit()
+    else:
+      userInput = userInput.lower()
+      if userInput == 'help':
+        return('help')
+        choiceStat = false
+      elif userInput == 'exit':
+        printNow("Time to leave.")
+        choiceStat = true
+        exit()
+      elif userInput == 'tatooine' and roomState == 'cloudCity':
+        printNow("you're off to Tatooine...wooosh!")
+        choiceStat = true
+        return('tatooine')
+      elif userInput == 'alderaan' and roomState == 'cloudCity':
+        printNow("you're off to Alderaan...woosh!")
+        choiceStat = true
+        return('alderaan')
+      elif userInput == 'business' and roomState == 'cloudCity':
+        printNow("I'm thirsty, let's go check out the business.")
+        choiceStat = true
+        return('business')
+      elif userInput == 'chat' and roomState == 'business':
+        choiceStat = true 
+        return('chat')  
+      elif userInput == 'leave' and roomState == 'business':
+        printNow("\nYou've left the business.")
+        choiceStat = true
+        return('leave')
+      else:
+        printNow("The nav computer could not interpret your choice. Please try again.")
+        choiceStat = false
+        
+#Establish where the user is on current planet and return appropriate dialog            
+def whereAmI2(gameState, roomState, currentRoom):
+  options = ""
+  uDialogOptions = ""
+  roomDescrip = ""
+  action = ""
+  uDialogAction = ""
+  
+  options =  "\n Type \"help\" to re-display this introduction."
+  options += "\nType \"exit\" or cancel the dialog box to quit at any time."
+  uDialogOptions = options
+  
+  if roomState == 'cloudCity':
+    roomDescrip =  "\nYou have arrived at the main space port on Cloud City.  "
+    roomDescrip += "There are space transports currently available to take you "
+    roomDescrip += "to Tatooine or Alderaan and the business district nearby."
+    if gameState[0] == true:
+      action =  "\nYou have the secret plans, but you might want to check "
+      action += "out the local businesses, and see if anyone can help you "
+      action += "find the Death Star."
+    elif gameState[0] == false:
+      action =  "\nSince your mission is to find the secret plans "
+      action += "for the Death star, you might want to ask around "
+      action += "a little bit and see if anyone can help you."
+    action += "\nEnter \"Tatooine\" or \"Alderaan\" to move on to another planet "
+    uDialogAction = "\nEnter \"Tatooine\" or \"Alderaan\" to move on to another planet "
+    action += "or type \"Business\" to go into the business center nearby "
+    uDialogAction += "or \ntype \"Business\" to go into the business center nearby "
+    action += "and talk to some locals."
+  elif roomState == 'business':
+    roomDescrip =  "\nYou've entered the business district.  "
+    roomDescrip += "It's off season, so the marketplace is virtually empty.  "
+    roomDescrip += "At the moment, only a local merchant is around selling her wares."
+    if gameState[0] == true:
+      action =  "\nYou might want to ask the merchant if she knows "
+      action += "how to get to the Death Star."
+    elif gameState[0] == false:
+      action =  "\nShe's trying to ignore you, but since no one else "
+      action += "seems to be around, why don\'t you ask her for some help."
+    action += "\nEnter \"chat\" to talk to the merchant or type \"leave\" " 
+    action += "to go back to the ship."
+    uDialogAction = "\nEnter \"chat\" to talk to the merchant or type \"leave\" "
+    uDialogAction += "to go back to the ship."    
+  elif roomState == 'chat':
+    roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
+    roomDescrip += "happen see any secret Death Star plans around here?\"\n"
+    if gameState[0] == true:
+      action =  "\nShe replies: \"Moron, you've got them in your hand.\"  "
+      action += "You reply with a look of embarrassment on your face: \"Sorry, "
+      action += "I mean do you know of a way to get to the Death Star?\"\n"
+      action += "\n\"Nope, nothing like that 'round here.  Don\'t ask me "
+      action += "stupid questions.  Now leave me alone!\""
+    elif gameState[1] == currentRoom and gameState[0] == false:
+      action += "\n\"You mean these worthless maps?  Some old guy with a "
+      action += "lightsaber traded them for a new pair of shoes.  I took pity "
+      action += "on the old drunk and agreed on the trade.  I didn't know what "
+      action += "to do with them, so I sewed them into this nice blanket.  "
+      action += "You can have them if you want.  It\'s not selling anyway.\"  She "
+      action += "hands you the plans.  What luck!"
+    else:
+      action =  "\n\"Nope, nothing like that around here.  You may want to check "
+      action += "out one of the nearby systems.  Might have better luck.\""
+    action += "\nType \"leave\" to exit the business district" 
+    uDialogAction += "\nType \"leave\" to exit the business district" 
+  return(options, roomDescrip, action, gameState, uDialogOptions, uDialogAction)
+  
+#Function to display chosen dialog   
+def dialog2(roomState, gameState, currentRoom):
+
+  printNow("\n--------------- Cloud City ---------------")
+    
+  allDialog =  whereAmI2(gameState, roomState, currentRoom)
+  
+  options = allDialog[0]
+  roomDescrip = allDialog[1]
+  action = allDialog[2]
+  textDisplay =  roomDescrip + action + options
+  
+  uDialogOptions = allDialog[4]
+  uDialogAction = allDialog[5]
+  dialogDisplay = uDialogAction + uDialogOptions
+  
+  printNow(textDisplay)
+  return(dialogDisplay)  
+ 
+
+#main planet function for cloudCity()
+#set's current room number as a variable
+#set's roomState variable to cloud city to be used later
+def cloudCity(gameState):
+
+  currentRoom = 7
+  roomState = 'cloudCity'
+  
+ 
+ #execute dialog depending on user input
+ #if another planet is choosen, exit while loop and off to other external function   
+  uiDialog = dialog2(roomState, gameState, currentRoom)
+  userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
+  while userResult != 'exit' and userResult != None:
+    if userResult == 'help':
+      help()
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'business':
+      roomState = 'business'
+      uiDialog = dialog2(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'chat':
+      uiDialog = dialog2(userResult, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'leave':
+      roomState = 'cloudCity'
+      uiDialog = dialog2(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
+    if userResult == 'chat' and gameState[1] == currentRoom:
+      gameState[0] = true  
+    if userResult == 'tatooine':
+    	tatooine(gameState)
+    	userResult = 'exit'
+    elif userResult == 'alderaan':
+    	alderaan(gameState)
+    	userResult = 'exit'
+    elif userResult == 'death star':
+    	deathStar(gameState)
+    	userResult = 'exit'
+        
+
 ##########HOTH FUNCTION (ROOM 5)#########################
 
 def hoth(gameState): #room 5
