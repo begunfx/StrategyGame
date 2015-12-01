@@ -31,7 +31,7 @@ def starWars():
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
   printNow("\n\n\n\n\n--------------- STAR WARS ---------------")
-  printNow("---------- The Python Adventures ----------\n")
+  printNow("---------- The Python Adventures ----------")
   help()
   naboo(gameState)
              
@@ -55,7 +55,7 @@ def exit():
   return
 
 def help():
-  printNow("A long time ago in a Galaxy far, far away...\n")
+  printNow("\nA long time ago in a Galaxy far, far away...\n")
   printNow("It is a time of great unrest as the evil Galactic Empire")
   printNow("continues to conquer, ensalve and ravage the free planets of")
   printNow("the galaxy. However, small bands of rebels have banded together") 
@@ -66,8 +66,8 @@ def help():
   printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
   printNow("On each world, you may jump to other select worlds by typing in one of the choices given.")
   printNow("You need to pick up the plans, find the princess and return to Naboo to win the game.\n")
-  printNow("Type help at any time to redisplay this introduction.")
-  printNow("Type exit to quit the game at any time.\n")
+  printNow("Type \"help\" at any time to redisplay this introduction.")
+  printNow("Type \"exit\" to quit the game at any time.\n")
 
 
 #############################################
@@ -88,7 +88,7 @@ def naboo(gameState):
   if(gameState[0]==true and gameState[1]==true): ########## has plans and princess and has reached exit, game is won #############
     printNow("\nCongratulations, You Have Rescued the Princess and brought her to safety")
     printNow("\nHis Highness, Prince Bail Organa thanks you for saving the Princess!!!")
-    printNow("\nThe Force is with with you!!!\n")
+    printNow("\nThe Force is with you!!!\n")
     check = false
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
   if(gameState[3]==1 and gameState[0]== false and gameState[1] == false):# found plan room
@@ -767,7 +767,7 @@ def whereAmI(gameState, roomState, currentRoom):
         action =  "\n\"Nope, nothing like that around here.  "
         action += "You may want to check out one of the nearby systems.  "
         action += "Might have better luck.\""
-    if gameState[4] == currentRoom and gameState[1] == false:
+    if gameState[4] == currentRoom and gameState[1] == false and gameState[0] == true:
       action += "\n\nType \"Death Star\" to use the secret launchpad "
       action += "or type \"leave\" to exit the bar"
       uDialogAction = "\n\nType \"Death Star\" to use the secret launchpad "
@@ -794,7 +794,12 @@ def dialog(roomState, gameState, currentRoom):
   
   uDialogOptions = allDialog[4]
   uDialogAction = allDialog[5]
+  
   dialogDisplay = uDialogAction + uDialogOptions
+  if gameState[0] == true and gameState[1] == true and gameState[2] == 1:
+    textDisplay += "\n\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+  elif gameState[0] == true and gameState[1] == true and gameState[2] > 1:
+    textDisplay += "\n\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
   
   printNow(textDisplay)
   return(dialogDisplay)  
@@ -810,12 +815,8 @@ def tatooine(gameState):
   #if you have the plans and princess, notify and deduct turns left
   if gameState[0] == true and gameState[1] == true:
     gameState[2] -= 1
-    if gameState[2] > 1:
-      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n")
-    elif gameState[2] == 1:
-      printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
     if gameState[2] == 0:
-      printNow("Imperial troops caught up with you en route to Tatooine. You lose.")
+      printNow("\nImperial troops caught up with you en route to Tatooine. You lose.")
       printNow("The Force is not with you.")
       return
  
@@ -937,7 +938,7 @@ def whereAmI2(gameState, roomState, currentRoom):
     action += "\nEnter \"Tatooine\" or \"Alderaan\" to move on to another planet "
     uDialogAction = "\nEnter \"Tatooine\" or \"Alderaan\" to move on to another planet "
     action += "or type \"Business\" to go into the business center nearby "
-    uDialogAction += "or \ntype \"Business\" to go into the business center nearby "
+    uDialogAction += "or \nType \"Business\" to go into the business center nearby "
     action += "and talk to some locals."
   elif roomState == 'business':
     roomDescrip =  "\nYou've entered the business district.  "
@@ -988,7 +989,7 @@ def whereAmI2(gameState, roomState, currentRoom):
       else:
         action =  "\n\"Nope, nothing like that around here.  You may want to check "
         action += "out one of the nearby systems.  Might have better luck.\""
-    if gameState[4] == currentRoom and gameState[1] == false:
+    if gameState[4] == currentRoom and gameState[1] == false and gameState[0] == true:
       action += "\n\nType \"Death Star\" to board the ship at the end of the "
       action += "space port or type leave to business district"
       uDialogAction = "\n\nType \"Death Star\" to board the ship at the end of the "
@@ -1017,6 +1018,11 @@ def dialog2(roomState, gameState, currentRoom):
   uDialogAction = allDialog[5]
   dialogDisplay = uDialogAction + uDialogOptions
   
+  if gameState[0] == true and gameState[1] == true and gameState[2] == 1:
+    textDisplay += "\n\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+  elif gameState[0] == true and gameState[1] == true and gameState[2] > 1:
+    textDisplay += "\n\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+  
   printNow(textDisplay)
   return(dialogDisplay)  
  
@@ -1032,12 +1038,8 @@ def cloudCity(gameState):
   #if you have the plans and princess, notify and deduct turns left
   if gameState[0] == true and gameState[1] == true:
     gameState[2] -= 1
-    if gameState[2] > 1:
-      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n")
-    elif gameState[2] == 1:
-      printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
     if gameState[2] == 0:
-      printNow("Imperial troops caught up with you en route to Cloud City. You lose.")
+      printNow("\nImperial troops caught up with you en route to Cloud City. You lose.")
       printNow("The Force is not with you.")
       return
  
@@ -1093,9 +1095,9 @@ def hoth(gameState): #room 5
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1
   if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
-    printNow("\nYou have " + str(gameState[2]) + " turns left\n") #tell player how many turns left
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
   elif gameState[2] == 1 and gameState[1] == true:
-    printNow("\nYou only have 1 turn left.\n") 
+    roomDesc += "\nYou only have 1 turn left.\n"
   elif gameState[2] == 0:
     printNow("You did not exit in time.  You lose.")
     return
@@ -1175,9 +1177,9 @@ def dagobah(gameState): #room 6
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1 #decrement turnsLeft
   if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
-    printNow("\nYou have " + str(gameState[2]) + " turns left\n") #tell player how many turns left
+    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
   elif gameState[2] == 1 and gameState[1] == true:
-    printNow("\nYou only have 1 turn left.\n") 
+    roomDesc += "\nYou only have 1 turn left.\n"
   elif gameState[2] == 0:
     printNow("You did not exit in time.  You lose.")
     return
