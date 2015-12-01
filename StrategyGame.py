@@ -51,6 +51,21 @@ def exit():
   printNow("Loser, The Force was not with you!!!")
   return
 
+def help():
+  printNow("A long time ago in a Galaxy far, far away...\n")
+  printNow("It is a time of great unrest as the evil Galactic Empire")
+  printNow("continues to conquer, ensalve and ravage the free planets of")
+  printNow("the galaxy. However, small bands of rebels have banded together") 
+  printNow("to fight the tyranny of the Empire and seek to restore the freedom and") 
+  printNow("justice known under the Old Republic. Unbeknownst to all, on the planet")
+  printNow("Naboo, a lone rebel seeks to obtain and deliver plans of a new, terrible") 
+  printNow("weapon created to crush the last vestiges of hope in the galaxy...")
+  printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
+  printNow("On each world, you may jump to other select worlds by typing in one of the choices given.\n")
+  printNow("Type help at any time to redisplay this introduction.")
+  printNow("Type exit to quit the game at any time."\n)
+
+
 #############################################
 # room one (Naboo) function #################
 #############################################
