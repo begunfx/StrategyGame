@@ -4,7 +4,7 @@
 #      Wendy Gray                #
 #      Brian Begun               #
 #                                #
-#      ver 1.0.0                 #
+#      ver 12.18.15              #
 #      11_26_2015                #
 ##################################
 
@@ -593,6 +593,11 @@ def deathStar(gameState):
 #############################################
 # room three (Tatooine) function ############
 #############################################
+#Function to grab input choices and display game play options
+#In requestString dialog box
+#return user entered input to be used in other functions
+#only allow certain user options depending on what part of the planet gameplay
+#user is in.
 def userChoice(roomState, gameState, currentRoom):
   uDialogOptions = whereAmI(gameState, roomState, currentRoom)[4]
   uDialogAction = whereAmI(gameState, roomState, currentRoom)[5]
@@ -643,7 +648,8 @@ def userChoice(roomState, gameState, currentRoom):
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
-        
+
+#Establish where the user is on current planet and return appropriate dialog        
 def whereAmI(gameState, roomState, currentRoom):
   options = ""
   uDialogOptions = ""
@@ -731,7 +737,7 @@ def whereAmI(gameState, roomState, currentRoom):
       uDialogAction += "\nType \"leave\" to exit the bar" 
   return(options, roomDescrip, action, gameState, uDialogOptions, uDialogAction)
   
-  
+#Function to display chosen dialog 
 def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Tatooine ---------------")
@@ -743,31 +749,33 @@ def dialog(roomState, gameState, currentRoom):
   
   printNow(textDisplay)  
 
+#main planet function for tatooine()
+#set's current room number as a variable
+#set's roomState variable to tatooine to be used later
 def tatooine(gameState):
 
   currentRoom = 3
   roomState = 'tatooine'
-  #plansRoom, deathStarRoom = randomizeRooms()
   
   #if you have the plans and princess, notify and deduct turns left
-  remaining = ""
   if gameState[0] == true and gameState[1] == true:
     gameState[2] -= 1
     if gameState[2] > 1:
-      remaining == "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n")
     elif gameState[2] == 1:
-      remaining += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+      printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
     if gameState[2] == 0:
       printNow("Imperial troops caught up with you en route to Tatooine. You lose.")
       printNow("The Force is not with you.")
       return
  
-  
+ #execute dialog depending on user input
+ #if another planet is choosen, exit while loop and off to other external function    
   dialog(roomState, gameState, currentRoom)
   userResult = userChoice(roomState, gameState, currentRoom)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
-      dialog(roomState, gameState, currentRoom)
+      help()
       userResult = userChoice(roomState, gameState, currentRoom)
     if userResult == 'cantina':
       roomState = 'cantina'
@@ -797,9 +805,35 @@ def tatooine(gameState):
     
     
     
+    
 #############################################
 # room seven (Cloud City) function ##########
 #############################################
+
+#initialize game state list
+#gameState variables: [hasPlans, hasPrincess, numTurnsLeft, plansRoom, deathStarRoom]
+#gameState = [false, false, 6, 0, 0]
+
+import random
+
+def exit():
+  printNow("Loser, The Force was not with you!!!")
+  return
+
+def randomizeRooms():
+  plansRoom = random.randint(2, 8)
+  deathStarRoom = random.randint(2, 8)
+  
+  while plansRoom == deathStarRoom:
+    deathStarRoom = random.randint(2, 8)
+   
+  return (plansRoom, deathStarRoom)
+  
+#Function to grab input choices and display game play options
+#In requestString dialog box
+#return user entered input to be used in other functions
+#only allow certain user options depending on what part of the planet gameplay
+#user is in.
 def userChoice2(roomState, gameState, currentRoom):
   uDialogOptions = whereAmI2(gameState, roomState, currentRoom)[4]
   uDialogAction = whereAmI2(gameState, roomState, currentRoom)[5]
@@ -847,6 +881,7 @@ def userChoice2(roomState, gameState, currentRoom):
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
         
+#Establish where the user is on current planet and return appropriate dialog            
 def whereAmI2(gameState, roomState, currentRoom):
   options = ""
   uDialogOptions = ""
@@ -937,7 +972,7 @@ def whereAmI2(gameState, roomState, currentRoom):
       uDialogAction += "\nType \"leave\" to exit the business district" 
   return(options, roomDescrip, action, gameState, uDialogOptions, uDialogAction)
   
-  
+#Function to display chosen dialog   
 def dialog2(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
@@ -949,29 +984,33 @@ def dialog2(roomState, gameState, currentRoom):
   
   printNow(textDisplay)  
 
+#main planet function for cloudCity()
+#set's current room number as a variable
+#set's roomState variable to cloud city to be used later
 def cloudCity(gameState):
 
   currentRoom = 7
   roomState = 'cloudCity'
   
   #if you have the plans and princess, notify and deduct turns left
-  remaining = ""
   if gameState[0] == true and gameState[1] == true:
     gameState[2] -= 1
     if gameState[2] > 1:
-      remaining == "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
+      printNow("\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n")
     elif gameState[2] == 1:
-      remaining += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
+      printNow("\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n")
     if gameState[2] == 0:
       printNow("Imperial troops caught up with you en route to Cloud City. You lose.")
       printNow("The Force is not with you.")
       return
-    
+ 
+ #execute dialog depending on user input
+ #if another planet is choosen, exit while loop and off to other external function   
   dialog2(roomState, gameState, currentRoom)
   userResult = userChoice2(roomState, gameState, currentRoom)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
-      dialog2(roomState, gameState, currentRoom)
+      help()
       userResult = userChoice2(roomState, gameState, currentRoom)
     if userResult == 'business':
       roomState = 'business'
@@ -995,6 +1034,7 @@ def cloudCity(gameState):
     elif userResult == 'death star':
     	deathStar(gameState)
     	userResult = 'exit'
+    
     
     
      
