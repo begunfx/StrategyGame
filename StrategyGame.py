@@ -97,11 +97,19 @@ def naboo(gameState):
     fndPlns += "He has just arrived at Naboo to give you the plans personally.\n"
     fndPlns += "He asks you to take them to use in your mission to rescue Princess Leia.\n\n"
     printNow(fndPlns)
-    picPln = requestString("Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n")
+    pPln = "Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n"
+    pPln += "Type \"HELP\" for game info.\n"
+    pPln += "or just Type \"EXIT\" to quit.\n"
+    picPln = requestString(pPln)
     picPln = picPln.lower()
     if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
+    elif choice == "help": # for Help
+      help()
+    elif chc == "exit":
+      exit()
+      check = false
     else:
       printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
   ############## this scenario is unlikely since Naboo is the entrance/exit planet (added for possible future change) #############
@@ -110,11 +118,19 @@ def naboo(gameState):
     dthStrFnd += "and you ask why. It turns out that the Death Star has been \n"
     dthStrFnd += "orbiting for the past several hours. You can finally\n"
     dthStrFnd += "rescue Princess Leia!\n\n"
-    printNow(dthStrFnd)    
-    svPrncs = requestString("Type \"Save Princess\" to jump to the Death Star and rescue Leia\n")
+    printNow(dthStrFnd)
+    sPncs = "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
+    sPncs += "Type \"HELP\" for game info.\n"
+    sPncs += "or just Type \"EXIT\" to quit.\n"
+    svPrncs = requestString(sPncs)
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
+    elif choice == "help": # for Help
+      help()
+    elif chc == "exit":
+      exit()
+      check = false
     else:
       printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
@@ -183,11 +199,19 @@ def coruscant(gameState):
     fndPlns += "and have located and copied the plans of the Death Star layout.\n"
     fndPlns += "He asks you to take them to use in your mission to rescue Princess Leia.\n\n"
     printNow(fndPlns)
-    picPln = requestString("Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n")
+    pPln = "Type \"Pickup Plans\" to pick up the plans from the Jedi Master\n"
+    pPln += "Type \"HELP\" for game info.\n"
+    pPln += "or just Type \"EXIT\" to quit.\n"
+    picPln = requestString(pPln)
     picPln = picPln.lower()
-    if picPln == "pickup plans":
+    if picPln == "pickup plans": # pickup plans
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
+    elif choice == "help": # for game info
+      help()
+    elif chc == "exit": # to exit
+      exit()
+      check = false
     else:
       printNow("\nYou have failed to pickup the plans.\nReturn later and try again.\n")
   if(gameState[4]==2 and gameState[0]== true and gameState[1] == false): # found deathstar and already has plans
@@ -196,10 +220,18 @@ def coruscant(gameState):
     dthStrFnd += "orbiting for the past several hours. You can finally\n"
     dthStrFnd += "rescue Princess Leia!\n\n"
     printNow(dthStrFnd)    
-    svPrncs = requestString("Type \"Save Princess\" to jump to the Death Star and rescue Leia\n")
+    sPncs = "Type \"Save Princess\" to jump to the Death Star and rescue Leia\n"
+    sPncs += "Type \"HELP\" for game info.\n"
+    sPncs += "or just Type \"EXIT\" to quit.\n"
+    svPrncs = requestString(sPncs)
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
+    elif choice == "help": # for Help
+      help()
+    elif chc == "exit": # to exit
+      exit()
+      check = false
     else:
       printNow("\nYou have failed to save the Princess.\nReturn later and try again.\n")
   # destination choice loop
