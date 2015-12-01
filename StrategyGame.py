@@ -61,9 +61,10 @@ def help():
   printNow("Naboo, a lone rebel seeks to obtain and deliver plans of a new, terrible") 
   printNow("weapon created to crush the last vestiges of hope in the galaxy...")
   printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
-  printNow("On each world, you may jump to other select worlds by typing in one of the choices given.\n")
+  printNow("On each world, you may jump to other select worlds by typing in one of the choices given.")
+  printNow("You need to pick up the plans and find the princess to win the game.\n")
   printNow("Type help at any time to redisplay this introduction.")
-  printNow("Type exit to quit the game at any time."\n)
+  printNow("Type exit to quit the game at any time.\n")
 
 
 #############################################
@@ -993,12 +994,12 @@ def hoth(gameState): #room 5
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1
   if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
-    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
+    printNow("\nYou have " + str(gameState[2]) + " turns left\n") #tell player how many turns left
   elif gameState[2] == 1 and gameState[1] == true:
-    roomDesc += "\nYou only have 1 turn left.\n" 
+    printNow("\nYou only have 1 turn left.\n") 
   elif gameState[2] == 0:
-      roomDesc += "You did not exit in time.  You lose."
-      return
+    printNow("You did not exit in time.  You lose.")
+    return
   printNow(roomDesc)
    
   while check == true:
@@ -1073,11 +1074,11 @@ def dagobah(gameState): #room 6
   gameState[1] == true): #hasPrincess
     gameState[2] = gameState[2] - 1 #decrement turnsLeft
   if gameState[2] > 1 and gameState[1] == true: #if more than one move and player has princess
-    roomDesc += "\nYou have " + str(gameState[2]) + " turns left\n" #tell player how many turns left
+    printNow("\nYou have " + str(gameState[2]) + " turns left\n") #tell player how many turns left
   elif gameState[2] == 1 and gameState[1] == true:
-    roomDesc += "\nYou only have 1 turn left.\n" 
+    printNow("\nYou only have 1 turn left.\n") 
   elif gameState[2] == 0:
-      roomDesc += "You exit in time.  You lose."
+    printNow("You did not exit in time.  You lose.")
       return
   printNow(roomDesc)
   
