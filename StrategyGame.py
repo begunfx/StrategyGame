@@ -641,10 +641,7 @@ def deathStar(gameState):
 #return user entered input to be used in other functions
 #only allow certain user options depending on what part of the planet gameplay
 #user is in.
-def userChoice(roomState, gameState, currentRoom):
-  uDialogOptions = whereAmI(gameState, roomState, currentRoom)[4]
-  uDialogAction = whereAmI(gameState, roomState, currentRoom)[5]
-  dialogDisplay = uDialogAction + uDialogOptions
+def userChoice(roomState, gameState, currentRoom, dialogDisplay):
   choiceStat = false
   while choiceStat == false:
     userInput = requestString(dialogDisplay)
@@ -734,8 +731,8 @@ def whereAmI(gameState, roomState, currentRoom):
       action = "\nYou might want to ask the barkeep if he knows how to get to the Death Star."
     elif gameState[0] == false and gameState[1] == false:
       action = "\nHe's staring right at you.  Now is your chance to ask him for some help."
-    action += "\nEnter \"chat\" to ask the barkeep a question or type leave to exit the cantina."
-    uDialogAction = "\nEnter \"chat\" to ask the barkeep a question or type leave to exit the cantina."   
+    action += "\nEnter \"chat\" to ask the barkeep a question or type \"leave\" to exit the cantina."
+    uDialogAction = "\nEnter \"chat\" to ask the barkeep a question or type \"leave\" to exit the cantina."   
   elif roomState == 'chat':
     roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret "
     roomDescrip += "Death Star plans around here?\""
@@ -768,10 +765,10 @@ def whereAmI(gameState, roomState, currentRoom):
         action =  "\n\"Nope, nothing like that around here.  "
         action += "You may want to check out one of the nearby systems.  "
         action += "Might have better luck.\""
-    if gameState[4] == currentRoom and gameState[1] != true:
-      action += "\n\nType \"DeathStar\" to use the secret launchpad "
+    if gameState[4] == currentRoom and gameState[1] == false:
+      action += "\n\nType \"Death Star\" to use the secret launchpad "
       action += "or type \"leave\" to exit the bar"
-      uDialogAction = "\n\nType \"DeathStar\" to use the secret launchpad "
+      uDialogAction = "\n\nType \"Death Star\" to use the secret launchpad "
       uDialogAction += "or type \"leave\" to exit the bar"
     elif gameState[4] != currentRoom or gameState[1] == true: 
       action += "\nType \"leave\" to exit the bar"
@@ -785,13 +782,20 @@ def whereAmI(gameState, roomState, currentRoom):
 def dialog(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Tatooine ---------------")
-   
-  options = whereAmI(gameState, roomState, currentRoom)[0]
-  roomDescrip = whereAmI(gameState, roomState, currentRoom)[1]
-  action = whereAmI(gameState, roomState, currentRoom)[2]
+  
+  allDialog =  whereAmI(gameState, roomState, currentRoom)
+  
+  options = allDialog[0]
+  roomDescrip = allDialog[1]
+  action = allDialog[2]
   textDisplay =  roomDescrip + action + options
   
-  printNow(textDisplay)  
+  uDialogOptions = allDialog[4]
+  uDialogAction = allDialog[5]
+  dialogDisplay = uDialogAction + uDialogOptions
+  
+  printNow(textDisplay)
+  return(dialogDisplay)  
 
 #main planet function for tatooine()
 #set's current room number as a variable
@@ -815,25 +819,25 @@ def tatooine(gameState):
  
  #execute dialog depending on user input
  #if another planet is choosen, exit while loop and off to other external function    
-  dialog(roomState, gameState, currentRoom)
-  userResult = userChoice(roomState, gameState, currentRoom)
+  uiDialog = dialog(roomState, gameState, currentRoom)
+  userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
       help()
-      userResult = userChoice(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'cantina':
       roomState = 'cantina'
-      dialog(roomState, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      uiDialog = dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'chat':
-      dialog(userResult, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      uiDialog = dialog(userResult, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'leave':
       roomState = 'tatooine'
-      dialog(roomState, gameState, currentRoom)
-      userResult = userChoice(roomState, gameState, currentRoom)
+      uiDialog = dialog(roomState, gameState, currentRoom)
+      userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'chat' and gameState[3] == currentRoom:
-      gameState[1] = true
+      gameState[0] = true
     if userResult == 'dagobah':
       dagobah(gameState)
       userResult = 'exit'
@@ -849,8 +853,6 @@ def tatooine(gameState):
     
     
     
-    
-    
 #############################################
 # room seven (Cloud City) function ##########
 #############################################
@@ -859,10 +861,7 @@ def tatooine(gameState):
 #return user entered input to be used in other functions
 #only allow certain user options depending on what part of the planet gameplay
 #user is in.
-def userChoice2(roomState, gameState, currentRoom):
-  uDialogOptions = whereAmI2(gameState, roomState, currentRoom)[4]
-  uDialogAction = whereAmI2(gameState, roomState, currentRoom)[5]
-  dialogDisplay = uDialogAction + uDialogOptions
+def userChoice2(roomState, gameState, currentRoom, dialogDisplay):
   choiceStat = false
   while choiceStat == false:
     userInput = requestString(dialogDisplay)
@@ -952,9 +951,9 @@ def whereAmI2(gameState, roomState, currentRoom):
     elif gameState[0] == false and gameState[1] == false:
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
-    action += "\nEnter \"chat\" to talk to the merchant or type leave " 
+    action += "\nEnter \"chat\" to talk to the merchant or type \"leave\" " 
     action += "to go back to the ship."
-    uDialogAction = "\nEnter \"chat\" to talk to the merchant or type leave "
+    uDialogAction = "\nEnter \"chat\" to talk to the merchant or type \"leave\" "
     uDialogAction += "to go back to the ship."    
   elif roomState == 'chat':
     roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
@@ -986,7 +985,7 @@ def whereAmI2(gameState, roomState, currentRoom):
       else:
         action =  "\n\"Nope, nothing like that around here.  You may want to check "
         action += "out one of the nearby systems.  Might have better luck.\""
-    if gameState[4] == currentRoom and gameState[1] != true:
+    if gameState[4] == currentRoom and gameState[1] == false:
       action += "\n\nType \"Death Star\" to board the ship at the end of the "
       action += "space port or type leave to business district"
       uDialogAction = "\n\nType \"Death Star\" to board the ship at the end of the "
@@ -1004,12 +1003,20 @@ def dialog2(roomState, gameState, currentRoom):
 
   printNow("\n--------------- Cloud City ---------------")
     
-  options = whereAmI2(gameState, roomState, currentRoom)[0]
-  roomDescrip = whereAmI2(gameState, roomState, currentRoom)[1]
-  action = whereAmI2(gameState, roomState, currentRoom)[2]
+  allDialog =  whereAmI2(gameState, roomState, currentRoom)
+  
+  options = allDialog[0]
+  roomDescrip = allDialog[1]
+  action = allDialog[2]
   textDisplay =  roomDescrip + action + options
   
-  printNow(textDisplay)  
+  uDialogOptions = allDialog[4]
+  uDialogAction = allDialog[5]
+  dialogDisplay = uDialogAction + uDialogOptions
+  
+  printNow(textDisplay)
+  return(dialogDisplay)  
+ 
 
 #main planet function for cloudCity()
 #set's current room number as a variable
@@ -1033,25 +1040,25 @@ def cloudCity(gameState):
  
  #execute dialog depending on user input
  #if another planet is choosen, exit while loop and off to other external function   
-  dialog2(roomState, gameState, currentRoom)
-  userResult = userChoice2(roomState, gameState, currentRoom)
+  uiDialog = dialog2(roomState, gameState, currentRoom)
+  userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
   while userResult != 'exit' and userResult != None:
     if userResult == 'help':
       help()
-      userResult = userChoice2(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'business':
       roomState = 'business'
-      dialog2(roomState, gameState, currentRoom)
-      userResult = userChoice2(roomState, gameState, currentRoom)
+      uiDialog = dialog2(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'chat':
-      dialog2(userResult, gameState, currentRoom)
-      userResult = userChoice2(roomState, gameState, currentRoom)
+      uiDialog = dialog2(userResult, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'leave':
       roomState = 'cloudCity'
-      dialog2(roomState, gameState, currentRoom)
-      userResult = userChoice2(roomState, gameState, currentRoom)
+      uiDialog = dialog2(roomState, gameState, currentRoom)
+      userResult = userChoice2(roomState, gameState, currentRoom, uiDialog)
     if userResult == 'chat' and gameState[3] == currentRoom:
-      gameState[1] = true  
+      gameState[0] = true  
     if userResult == 'tatooine':
     	tatooine(gameState)
     	userResult = 'exit'
@@ -1061,6 +1068,7 @@ def cloudCity(gameState):
     elif userResult == 'death star':
     	deathStar(gameState)
     	userResult = 'exit'
+    
     
       
      
