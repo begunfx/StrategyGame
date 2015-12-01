@@ -141,7 +141,6 @@ def naboo(gameState):
       check = false
       alderaan(gameState)
     elif choice == "help": # for Help
-      check = false
       help()
     elif chc == "exit":
       exit()
@@ -231,7 +230,6 @@ def coruscant(gameState):
       check = false
       dagobah(gameState)
     elif choice == "help": # for Help
-      check = false
       help()
     elif chc == "exit":
       exit()
