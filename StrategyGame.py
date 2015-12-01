@@ -1077,7 +1077,7 @@ def dagobah(gameState): #room 6
     printNow("\nYou only have 1 turn left.\n") 
   elif gameState[2] == 0:
     printNow("You did not exit in time.  You lose.")
-      return
+    return
   printNow(roomDesc)
   
   while check == true:
