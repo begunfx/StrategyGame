@@ -30,6 +30,9 @@ def starWars():
   # gameState[3] = plansRoom (2, 3, ... , 8) random
   # gameState[4] = deathStarRoom (2, 3, ... , 8) random
   gameState = [false, false, 6, randomRooms[0], randomRooms[1]]
+  printNow("\n\n\n\n\n--------------- STAR WARS ---------------")
+  printNow("---------- The Python Adventures ----------\n")
+  help()
   naboo(gameState)
              
 #Randomize int numbers to pick room to hide plans in
@@ -62,7 +65,7 @@ def help():
   printNow("weapon created to crush the last vestiges of hope in the galaxy...")
   printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
   printNow("On each world, you may jump to other select worlds by typing in one of the choices given.")
-  printNow("You need to pick up the plans, find the princess and return Naboo to win the game.\n")
+  printNow("You need to pick up the plans, find the princess and return to Naboo to win the game.\n")
   printNow("Type help at any time to redisplay this introduction.")
   printNow("Type exit to quit the game at any time.\n")
 
