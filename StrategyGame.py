@@ -102,11 +102,13 @@ def naboo(gameState):
     pPln += "or just Type \"EXIT\" to quit.\n"
     picPln = requestString(pPln)
     picPln = picPln.lower()
+    if picPln == "help": # for Help
+      help()
+      picPln = requestString(pPln)
+      picPln = picPln.lower()      
     if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-    elif picPln == "help": # for Help
-      help()
     elif picPln == "exit":
       exit()
       check = false
@@ -124,10 +126,12 @@ def naboo(gameState):
     sPncs += "or just Type \"EXIT\" to quit.\n"
     svPrncs = requestString(sPncs)
     svPrncs = svPrncs.lower()
+    if svPrncs == "help": # for Help
+      help()
+      svPrncs = requestString(sPncs)
+      svPrncs = picPln.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-    elif svPrncs == "help": # for Help
-      help()
     elif svPrncs == "exit":
       exit()
       check = false
@@ -204,12 +208,14 @@ def coruscant(gameState):
     pPln += "or just Type \"EXIT\" to quit.\n"
     picPln = requestString(pPln)
     picPln = picPln.lower()
-    if picPln == "pickup plans": # pickup plans
+    if picPln == "help": # for Help
+      help()
+      picPln = requestString(pPln)
+      picPln = picPln.lower()      
+    if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-    elif picPln == "help": # for game info
-      help()
-    elif picPln == "exit": # to exit
+    elif picPln == "exit":
       exit()
       check = false
     else:
@@ -225,11 +231,13 @@ def coruscant(gameState):
     sPncs += "or just Type \"EXIT\" to quit.\n"
     svPrncs = requestString(sPncs)
     svPrncs = svPrncs.lower()
+    if svPrncs == "help": # for Help
+      help()
+      svPrncs = requestString(sPncs)
+      svPrncs = picPln.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-    elif svPrncs == "help": # for Help
-      help()
-    elif svPrncs == "exit": # to exit
+    elif svPrncs == "exit":
       exit()
       check = false
     else:
