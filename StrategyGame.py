@@ -691,7 +691,8 @@ def whereAmI(gameState, roomState, currentRoom):
       action = "\nYou might want to ask the barkeep if he knows how to get to the Death Star."
     elif gameState[0] == false and gameState[1] == false:
       action = "\nHe's staring right at you.  Now is your chance to ask him for some help."
-    action += "\nEnter \"chat\" to ask the barkeep a question or type leave to exit the cantina."    
+    action += "\nEnter \"chat\" to ask the barkeep a question or type leave to exit the cantina."
+    uDialogAction = "\nEnter \"chat\" to ask the barkeep a question or type leave to exit the cantina."   
   elif roomState == 'chat':
     roomDescrip = "\nYou say jokingly: \"Hey barkeep, you happen see any secret "
     roomDescrip += "Death Star plans around here?\""
@@ -806,29 +807,10 @@ def tatooine(gameState):
     
     
     
+    
 #############################################
 # room seven (Cloud City) function ##########
 #############################################
-
-#initialize game state list
-#gameState variables: [hasPlans, hasPrincess, numTurnsLeft, plansRoom, deathStarRoom]
-#gameState = [false, false, 6, 0, 0]
-
-import random
-
-def exit():
-  printNow("Loser, The Force was not with you!!!")
-  return
-
-def randomizeRooms():
-  plansRoom = random.randint(2, 8)
-  deathStarRoom = random.randint(2, 8)
-  
-  while plansRoom == deathStarRoom:
-    deathStarRoom = random.randint(2, 8)
-   
-  return (plansRoom, deathStarRoom)
-  
 #Function to grab input choices and display game play options
 #In requestString dialog box
 #return user entered input to be used in other functions
@@ -928,7 +910,9 @@ def whereAmI2(gameState, roomState, currentRoom):
       action =  "\nShe's trying to ignore you, but since no one else "
       action += "seems to be around, why don\'t you ask her for some help."
     action += "\nEnter \"chat\" to talk to the merchant or type leave " 
-    action += "to go back to the ship."    
+    action += "to go back to the ship."
+    uDialogAction = "\nEnter \"chat\" to talk to the merchant or type leave "
+    uDialogAction += "to go back to the ship."    
   elif roomState == 'chat':
     roomDescrip =  "\nYou say jokingly: \"Hi there good lookin\', you "
     roomDescrip += "happen see any secret Death Star plans around here?\"\n"
@@ -1035,8 +1019,7 @@ def cloudCity(gameState):
     	deathStar(gameState)
     	userResult = 'exit'
     
-    
-    
+      
      
 ##########HOTH FUNCTION (ROOM 5)#########################
 
