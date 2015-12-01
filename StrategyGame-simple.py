@@ -1,4 +1,4 @@
-#######Team 4 Strategy Game#######
+## Team 4 Strategy Game Simple ###
 #      William Gillihan          #
 #      Christopher Dixon         #
 #      Wendy Gray                #
@@ -8,15 +8,13 @@
 #      11_26_2015                #
 ##################################
 
-#StrategyGame.py
+#StrategyGame-simple.py
 #Main File
 #Theme: Star Wars
 #
 #Object of the game:
 #Travel from planet to planet
 #Look for the secret plans to the Death Star
-#Find the Princess (Who is locked up on the Death Star
-#Escape before you run our of turns!
 
 # #Put all imports here please
 # import random
@@ -45,7 +43,7 @@ def help():
   printNow("weapon created to crush the last vestiges of hope in the galaxy...")
   printNow("Welcome to the Star Wars Galaxy.  You will be able to explore eight worlds in this galaxy.")  
   printNow("On each world, you may jump to other select worlds by typing in one of the choices given.")
-  printNow("You need to pick up the plans, find the princess and return Naboo to win the game.\n")
+  printNow("You need to pick up the plans to the Death Star to stop the Empire.\n")
   printNow("Type help at any time to redisplay this introduction.")
   printNow("Type exit to quit the game at any time.\n")
 
@@ -202,3 +200,139 @@ def coruscant(gameState):
     else:
       printNow("You cannot get to "+ chc +" from here,\ntry Naboo, Alderaan, Hoth, Dagobah, or type EXIT to quit..")
       check = true
+#################################################
+# room 4 (Alderaan) function
+#################################################
+def alderaan(gameState):
+  check = true
+  choiceDescrip = ""
+  roomDescrip = "\n--------------- Alderaan Spaceport ---------------\n"
+  roomDescrip += "You are at the Spaceport on the lush, \n"
+  roomDescrip += "mountainous planet of Alderaan, one of the hubs of the \n"
+  roomDescrip += "Rebel Alliance.  You spend some time talking to some rebels\n"
+  roomDescrip += "about the best ways to avoid the Empire. Your destination options\n"
+  roomDescrip += "are Naboo, Coruscant, Cloud City, and Endor.\n"
+  
+  cDescrip = "What do you want to do?\n"
+  cDescrip += "Type \"Naboo\" to jump to Naboo\n"
+  cDescrip += "Type \"Coruscant\" to jump to Coruscant\n"
+  cDescrip += "Type \"Cloud City\" to jump to Cloud City\n"
+  cDescrip += "Type \"Endor\" to jump to Endor\n"
+  
+  #if this planet has the plans and you don't already have them, notify
+  if gameState[0] == false and gameState[1] == 4:
+    roomDescrip += "\nHowever, before you take off, Prince Bail Organa\n"
+    roomDescrip += "catches up with you.  He reveals a small disk drive\n"
+    roomDescrip += "and tells you that it contains the plans of the \n"
+    roomDescrip += "layout of the Death Star.  He begs you to take them\n"
+    roomDescrip += "and defeat the Empire.\n"
+ 
+    
+    choiceDescrip = "Type \"Pickup Plans\" to take the Plans\n"
+  
+
+  choiceDescrip = cDescrip + choiceDescrip + "Type \"Exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
+  cDescrip += "Type \"Exit\" to exit the game\n"
+  cDescrip += "Type \"Help\" to display game info\n"
+  
+  printNow(roomDescrip)
+  choice = requestString(choiceDescrip)
+  
+  while check == true:
+    if choice == None:
+      printNow("\nYou're quitting, you nerf herder?  Too bad!\n")
+      return
+      check = false
+    else:
+      choice = choice.lower()
+    if choice == "naboo":
+      naboo(gameState)
+      check = false
+    elif choice == "coruscant":
+      coruscant(gameState)
+      check = false
+    elif choice == "cloud city":
+      cloudCity(gameState)
+      check = false
+    elif choice == "endor":
+      endor(gameState)
+      check = false
+    elif choice == "pickup plans" and gameState[0] == false and gameState[1] == 4: #pickup plans
+      gameState[0] = true
+      printNow("\nCongratulations!  You've accomplished your mission!\n")
+      choice = requestString(cDescrip)
+    elif choice == "exit":
+      printNow("\nYou're quitting, you nerf herder?  Too bad!\n")
+      return
+      check = false
+    elif choice == "help":
+      help()
+      choice = requestString(choiceDescrip)
+    else:
+      printNow("\nThe nav computer could not interpret your choice. Please try again.\n")
+      choice = requestString(choiceDescrip)
+      
+#################################################
+# room 8 (Endor) function
+#################################################
+def endor(gameState):
+  check = true
+  choiceDescrip = ""
+  roomDescrip = "\n--------------- Endor Spaceport ---------------\n"
+  roomDescrip += "You have arrived at the Spaceport on the forest moon\n"
+  roomDescrip += "of Endor. After the Ewoks have refueled the Millenium\n"
+  roomDescrip += "Falcon, you're ready to continue your journey.\n"
+  roomDescrip += "They tell you that the only planets within range\n"
+  roomDescrip += "are Alderaan and Hoth.\n"
+  
+  cDescrip = "What do you want to do?\n"
+  cDescrip += "Type \"Alderaan\" to jump to Alderaan\n"
+  cDescrip += "Type \"Hoth\" to jump to Hoth\n"
+  
+  #if this planet has the plans and you don't already have them, notify
+  if gameState[0] == false and gameState[1] == 8:
+    roomDescrip += "\nMore importantly, you notice a blue astromech droid\n"
+    roomDescrip += "rolling toward you and beeping.  The gold protocol droid\n"
+    roomDescrip += "next to him calls for you to wait.  He introduces himself\n"
+    roomDescrip += "as C-3PO and informs you that his companion, R2-D2 has\n"
+    roomDescrip += "the secret plans for the Death Star.  He offers them to\n"
+    roomDescrip += "you to destroy the Empire.\n"
+    
+    choiceDescrip = "Type \"Pickup Plans\" to take the plans from the droids\n"
+  
+  choiceDescrip = cDescrip + choiceDescrip + "Type \"Exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
+  cDescrip += "Type \"Exit\" to exit the game\n"
+  cDescrip += "Type \"Help\" to display game info\n"
+  
+  printNow(roomDescrip)
+  choice = requestString(choiceDescrip)
+  
+  while check == true:
+    if choice == None:
+      printNow("\nYou're quitting, you nerf herder?  Too bad!\n")
+      return
+      check = false
+    else:
+      choice = choice.lower()
+    if choice == "alderaan":
+      alderaan(gameState)
+      check = false
+    elif choice == "hoth":
+      hoth(gameState)
+      check = false
+    elif choice == "pickup plans" and gameState[0] == false and gameState[1] == 8: #pickup plans
+      gameState[0] = true
+      printNow("\nCongratulations!  You've accomplished your mission!\n")
+      choice = requestString(cDescrip)
+    elif choice == "help":
+      help()
+      choice = requestString(choiceDescrip)
+    elif choice == "exit":
+      printNow("\nYou're quitting, you nerf herder?  Too bad!\n")
+      return
+      check = false
+    else:
+      printNow("\nThe nav computer could not interpret your choice. Please try again.\n")
+      choice = requestString(choiceDescrip)
