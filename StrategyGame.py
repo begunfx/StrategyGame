@@ -240,6 +240,7 @@ def coruscant(gameState):
       svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
+      return
     elif svPrncs == "exit":
       exit()
       check = false
@@ -697,7 +698,7 @@ def whereAmI(gameState, roomState, currentRoom):
   action = ""
   uDialogAction = ""
   
-  options =  "\n Type \"help\" to re-display this introduction."
+  options =  "\nType \"help\" to re-display this introduction."
   options += "\nType \"exit\" or cancel the dialog box to quit at any time."
   uDialogOptions = options
   
@@ -761,6 +762,7 @@ def whereAmI(gameState, roomState, currentRoom):
         action += "You can have them if you want.  "
         action += "They're just collecting dust back here.\"  "
         action += "He hands you the plans.  What luck!"
+        gameState[0] = true
       else:
         action =  "\n\"Nope, nothing like that around here.  "
         action += "You may want to check out one of the nearby systems.  "
@@ -836,7 +838,7 @@ def tatooine(gameState):
       roomState = 'tatooine'
       uiDialog = dialog(roomState, gameState, currentRoom)
       userResult = userChoice(roomState, gameState, currentRoom, uiDialog)
-    if userResult == 'chat' and gameState[3] == currentRoom:
+    if userResult == 'chat' and gameState[3] == 3:
       gameState[0] = true
     if userResult == 'dagobah':
       dagobah(gameState)
@@ -879,7 +881,7 @@ def userChoice2(roomState, gameState, currentRoom, dialogDisplay):
         choiceStat = true
         exit()
       elif userInput == 'tatooine' and roomState == 'cloudCity':
-        printNow("you're off to Tatooine...wooosh!")
+        printNow("You're off to Tatooine...wooosh!")
         choiceStat = true
         return('tatooine')
       elif userInput == 'alderaan' and roomState == 'cloudCity':
@@ -898,9 +900,9 @@ def userChoice2(roomState, gameState, currentRoom, dialogDisplay):
         choiceStat = true
         return('leave')
       elif gameState[4] == currentRoom and roomState == 'business':
-        printNow("you're off to save the Princess on the Death Star...woosh!")
+        printNow("You're off to save the Princess on the Death Star...woosh!")
         choiceStat = true
-        return('death Star')
+        return('death star')
       else:
         printNow("The nav computer could not interpret your choice. Please try again.")
         choiceStat = false
@@ -913,7 +915,7 @@ def whereAmI2(gameState, roomState, currentRoom):
   action = ""
   uDialogAction = ""
   
-  options =  "\n Type \"help\" to re-display this introduction."
+  options =  "\nType \"help\" to re-display this introduction."
   options += "\nType \"exit\" or cancel the dialog box to quit at any time."
   uDialogOptions = options
   
@@ -982,6 +984,7 @@ def whereAmI2(gameState, roomState, currentRoom):
         action += "to do with them, so I sewed them into this nice blanket.  "
         action += "You can have them if you want.  It\'s not selling anyway.\"  She "
         action += "hands you the plans.  What luck!"
+        gameState[0] = true
       else:
         action =  "\n\"Nope, nothing like that around here.  You may want to check "
         action += "out one of the nearby systems.  Might have better luck.\""
@@ -989,7 +992,7 @@ def whereAmI2(gameState, roomState, currentRoom):
       action += "\n\nType \"Death Star\" to board the ship at the end of the "
       action += "space port or type leave to business district"
       uDialogAction = "\n\nType \"Death Star\" to board the ship at the end of the "
-      uDialogAction += "space port or type leave to business district"
+      uDialogAction += "space port or type \"leave\" to business district"
     elif gameState[4] != currentRoom or gameState[1] == true: 
       action += "\nType \"leave\" to exit business district"
       uDialogAction += "\nType \"leave\" to exit business district"
@@ -1060,14 +1063,14 @@ def cloudCity(gameState):
     if userResult == 'chat' and gameState[3] == currentRoom:
       gameState[0] = true  
     if userResult == 'tatooine':
-    	tatooine(gameState)
-    	userResult = 'exit'
+      tatooine(gameState)
+      userResult = 'exit'
     elif userResult == 'alderaan':
-    	alderaan(gameState)
-    	userResult = 'exit'
+      alderaan(gameState)
+      userResult = 'exit'
     elif userResult == 'death star':
-    	deathStar(gameState)
-    	userResult = 'exit'
+      deathStar(gameState)
+      userResult = 'exit'
     
     
       
@@ -1139,7 +1142,7 @@ def hoth(gameState): #room 5
       printNow("Go find the Death Star!")
       gameState[0] = true #hasPlans
       check = false
-      dagobah(gameState)
+      hoth(gameState)
     elif (choice == "save princess" and 
     gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
