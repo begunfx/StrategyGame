@@ -234,7 +234,7 @@ def coruscant(gameState):
     if svPrncs == "help": # for Help
       help()
       svPrncs = requestString(sPncs)
-      svPrncs = picPln.lower()
+      svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
     elif svPrncs == "exit":
