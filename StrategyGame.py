@@ -242,7 +242,7 @@ def coruscant(gameState):
 # room 4 (Alderaan) function
 #################################################
 def alderaan(gameState):
-  check = true
+  check = true  #check for while loop
   choiceDescrip = ""
   roomDescrip = "\n--------------- Alderaan Spaceport ---------------\n"
   roomDescrip += "You are at the Spaceport on the lush, \n"
@@ -251,6 +251,7 @@ def alderaan(gameState):
   roomDescrip += "about the best ways to avoid the Empire. Your destination options\n"
   roomDescrip += "are Naboo, Coruscant, Cloud City, and Endor.\n"
   
+  #choice options
   cDescrip = "What do you want to do?\n"
   cDescrip += "Type \"Naboo\" to jump to Naboo\n"
   cDescrip += "Type \"Coruscant\" to jump to Coruscant\n"
@@ -260,8 +261,8 @@ def alderaan(gameState):
   #if this planet has the plans and you don't already have them, notify
   if gameState[0] == false and gameState[3] == 4:
     roomDescrip += "\nHowever, before you take off, you recieve a transmission\n"
-    roomDescrip += "from His Highness, Prince Bail Organa.  He requests to meet\n"
-    roomDescrip += "with you immediately in his private quarters.\n"
+    roomDescrip += "from His Royal Highness, Prince Bail Organa.  He requests to\n"
+    roomDescrip += "meet with you immediately in his private quarters.\n"
     
     choiceDescrip = "Type \"Meet Prince\" to see what the Prince has to say\n"
     
@@ -281,56 +282,63 @@ def alderaan(gameState):
       roomDescrip += "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
     elif gameState[2] == 1:
       roomDescrip += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
-    if gameState[2] == 0:
-      printNow("Imperial troops caught up with you en route to Endor. You lose.")
+    if gameState[2] == 0:  #game loss
+      printNow("\nImperial troops caught up with you en route to Alderaan. You lose.")
       printNow("The Force is not with you.")
       return
   
+  #add help and exit options
   choiceDescrip = cDescrip + choiceDescrip + "Type \"Exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
   cDescrip += "Type \"Exit\" to exit the game\n"
+  cDescrip += "Type \"Help\" to display game info\n"
   
   printNow(roomDescrip)
   choice = requestString(choiceDescrip)
   
+  #user input while loop
   while check == true:
-    if choice == None:
+    if choice == None:  #if canceled
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
     else:
       choice = choice.lower()
-    if choice == "naboo":
+    if choice == "naboo":  #naboo
       naboo(gameState)
       check = false
-    elif choice == "coruscant":
+    elif choice == "coruscant":  #coruscant
       coruscant(gameState)
       check = false
-    elif choice == "cloud city":
+    elif choice == "cloud city":  #cloud city
       cloudCity(gameState)
       check = false
-    elif choice == "endor":
+    elif choice == "endor":  #endor
       endor(gameState)
       check = false
     elif choice == "meet prince" and gameState[0] == false and gameState[3] == 4: #talk to prince
       hasPlans = talkToPrince()
-      if hasPlans == 1:
+      if hasPlans == 1:  #if you have plans
         gameState[0] = true
         printNow("You travel back to the spaceport with all the pieces you need to ")
         printNow("rescue Princess Leia. The next step is to find the Death Star.")
         choice = requestString(cDescrip)
-      elif hasPlans == 0:
+      elif hasPlans == 0:  #if you don't have plans
         printNow("Are you sure you don't want to take the plans?  They would be")
         printNow("very useful!")
         choice = requestString(choiceDescrip)
-      else:
+      else:   #if exit or cancel had been chosen
         return
     elif choice == "save princess" and gameState[0] == true and gameState[1] == false and gameState[4] == 4:
-      deathStar(gameState) #go to death star
+      deathStar(gameState)   #go to death star
       check = false
-    elif choice == "exit":
+    elif choice == "exit":  #exit
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
+    elif choice == "help":  #display game info
+      help()
+      choice = requestString(choiceDescrip)
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
       choice = requestString(choiceDescrip)
@@ -338,8 +346,8 @@ def alderaan(gameState):
 # talk to Prince to pick up plans, return 1 if plans picked up, 
 #     0 if not picked up, -1 if exit
 def talkToPrince():
-  check = true
-  roomDescrip = "You make your way to the palace and ask directions to His Higness.\n"
+  check = true  #check for while loop
+  roomDescrip = "You make your way to the palace and ask directions to His Highness.\n"
   roomDescrip += "He greets you in his private sitting room and locks the door before\n"
   roomDescrip += "pressing a hidden button and revealing a small data drive.  He informs\n"
   roomDescrip += "you that the drive contains the plans for the layout of the Death Star.\n"
@@ -349,27 +357,30 @@ def talkToPrince():
   choiceDescrip += "Type \"Pickup Plans\" to take the plans from the Prince\n"
   choiceDescrip += "Type \"Ignore\" to ignore the Prince and leave without the plans\n"
   choiceDescrip += "Type \"Exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
   printNow(roomDescrip)
   
-  while check == true:
+  while check == true:  #user input loop
     choice = requestString(choiceDescrip)
     
-    if choice == None:
+    if choice == None:  #cancel
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return -1
       check = false
     else:
       choice = choice.lower()
-    if choice == "ignore":
+    if choice == "ignore":  #don't pick up plans
       return 0
       check = false
-    elif choice == "pickup plans":
+    elif choice == "pickup plans":  #pickup plans
       return 1
       check = false
-    elif choice == "exit":
+    elif choice == "exit":  #exit
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return -1
       check = false
+    elif choice == "help":  #display game info
+      help()
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
 
@@ -377,7 +388,7 @@ def talkToPrince():
 # room 8 (Endor) function
 #################################################
 def endor(gameState):
-  check = true
+  check = true  #check for while loop
   choiceDescrip = ""
   roomDescrip = "\n--------------- Endor Spaceport ---------------\n"
   roomDescrip += "You have arrived at the Spaceport on the forest moon\n"
@@ -414,47 +425,54 @@ def endor(gameState):
       roomDescrip += "\nBe Careful! You only have " + str(gameState[2]) + " spacejumps left to outrun the Empire to Naboo!\n"
     elif gameState[2] == 1:
       roomDescrip += "\nBe Careful! You only have 1 spacejump left to outrun the Empire to Naboo!\n"
-    if gameState[2] == 0:
-      printNow("Imperial troops caught up with you en route to Endor. You lose.")
+    if gameState[2] == 0:  #game loss
+      printNow("\nImperial troops caught up with you en route to Endor. You lose.")
       printNow("The Force is not with you.")
       return
   
+  #add exit and help options
   choiceDescrip = cDescrip + choiceDescrip + "Type \"Exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
   cDescrip += "Type \"Exit\" to exit the game\n"
-  printNow(roomDescrip)
+  cDescrip += "Type \"Help\" to display game info\n"
   
+  printNow(roomDescrip)
   choice = requestString(choiceDescrip)
   
+  #user input
   while check == true:
-    if choice == None:
+    if choice == None:  #cancel
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
     else:
       choice = choice.lower()
-    if choice == "alderaan":
+    if choice == "alderaan":  #alderaan
       alderaan(gameState)
       check = false
-    elif choice == "hoth":
+    elif choice == "hoth":  #hoth
       hoth(gameState)
       check = false
     elif choice == "droids" and gameState[0] == false and gameState[3] == 8: #talk to droids
       hasPlans = talkToDroids()
-      if hasPlans == 1:
+      if hasPlans == 1:  #if plans are picked up
         gameState[0] = true
         printNow("You now have all the pieces you need to rescue Princess Leia! ")
         printNow("The next step is to find the Death Star.")
         choice = requestString(cDescrip)
-      elif hasPlans == 0:
+      elif hasPlans == 0:  #if plans are not picked up
         printNow("Are you sure you don't want to take the plans?  They would be")
         printNow("very useful!")
         choice = requestString(choiceDescrip)
-      else:
+      else:  #if exit or cancel had been chosen
         return
     elif choice == "save princess" and gameState[0] == true and gameState[1] == false and gameState[4] == 8:
       deathStar(gameState)  #go to death star
       check = false
-    elif choice == "exit":
+    elif choice == "help":  #game info
+      help()
+      choice = requestString(choiceDescrip)
+    elif choice == "exit":  #exit
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
@@ -465,7 +483,7 @@ def endor(gameState):
 # talk to droids to pick up plans, return 1 if plans picked up, 
 #     0 if not picked up, -1 if exit
 def talkToDroids():
-  check = true
+  check = true  #while loop check
   roomDescrip = "You stop as the droids come up to you and introduce\n"
   roomDescrip += "themselves as R2-D2 and C-3PO.  C-3PO tells you that\n"
   roomDescrip += "they heard of your mission and that R2-D2 holds the plans \n"
@@ -475,24 +493,27 @@ def talkToDroids():
   choiceDescrip += "Type \"Pickup Plans\" to take the plans from the droids\n"
   choiceDescrip += "Type \"Ignore\" to ignore the droids and take off without the plans\n"
   choiceDescrip += "Type \"exit\" to exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
   printNow(roomDescrip)
   
-  while check == true:
+  while check == true:  #user input
     choice = requestString(choiceDescrip)
     
-    if choice == None:
+    if choice == None:  #cancel
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return -1
       check = false
     else:
       choice = choice.lower()
-    if choice == "ignore":
+    if choice == "ignore":  #plans not picked up
       return 0
       check = false
-    elif choice == "pickup plans":
+    elif choice == "pickup plans":  #plans picked up
       return 1
       check = false
-    elif choice == "exit":
+    elif choice == "help":  #game info
+      help()
+    elif choice == "exit":  #exit
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return -1
       check = false
@@ -503,7 +524,7 @@ def talkToDroids():
 # room 9 (Death Star secret room) function
 #################################################
 def deathStar(gameState):
-  check = true
+  check = true  #while loop check
   roomDescrip = "\n--------------- Death Star ---------------\n"
   roomDescrip += "You piggyback the Millenium Falcon to a Star Destroyer to get close \n"
   roomDescrip += "to the Death Star, slip inside through a trash chute, and leave\n"
@@ -525,46 +546,49 @@ def deathStar(gameState):
   choiceDescrip = "What do you want to do?\n"
   choiceDescrip += "Type \"Continue\" to keep your promise and finish the mission\n"
   choiceDescrip += "Type \"Exit\" to desert the princess and exit the game\n"
+  choiceDescrip += "Type \"Help\" to display game info\n"
   
   gameState[1] = true
   printNow(roomDescrip)
   
+  #user input
   while check == true:
     choice = requestString(choiceDescrip)
-    if choice == None:
+    if choice == None:  #cancel
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
     else:
       choice = choice.lower()
-    if choice == "exit":
+    if choice == "exit":  #exit
       printNow("\nYou're quitting, you nerf herder?  Too bad, she has a lot of money.\n")
       return
       check = false
-    elif choice == "continue" and gameState[4] == 2:
+    elif choice == "help":  #game info
+      help()
+    elif choice == "continue" and gameState[4] == 2:  #coruscant
       coruscant(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 3:
+    elif choice == "continue" and gameState[4] == 3:  #tatooine
       tatooine(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 4:
+    elif choice == "continue" and gameState[4] == 4:  #alderaan
       alderaan(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 5:
+    elif choice == "continue" and gameState[4] == 5:  #hoth
       hoth(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 6:
+    elif choice == "continue" and gameState[4] == 6:  #dagobah
       dagobah(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 7:
+    elif choice == "continue" and gameState[4] == 7:  #cloud city
       cloudCity(gameState)
       check = false
-    elif choice == "continue" and gameState[4] == 8:
+    elif choice == "continue" and gameState[4] == 8:  #endor
       endor(gameState)
       check = false
     else:
       printNow("The nav computer could not interpret your choice. Please try again.")
-
 
 #############################################
 # room three (Tatooine) function ############
