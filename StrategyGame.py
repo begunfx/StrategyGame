@@ -105,9 +105,9 @@ def naboo(gameState):
     if picPln == "pickup plans":
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-    elif choice == "help": # for Help
+    elif picPln == "help": # for Help
       help()
-    elif chc == "exit":
+    elif picPln == "exit":
       exit()
       check = false
     else:
@@ -126,9 +126,9 @@ def naboo(gameState):
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-    elif choice == "help": # for Help
+    elif svPrncs == "help": # for Help
       help()
-    elif chc == "exit":
+    elif svPrncs == "exit":
       exit()
       check = false
     else:
@@ -207,9 +207,9 @@ def coruscant(gameState):
     if picPln == "pickup plans": # pickup plans
       gameState[0] = true
       printNow("\nYou have the plans, May The Force be With You!\n")
-    elif choice == "help": # for game info
+    elif picPln == "help": # for game info
       help()
-    elif chc == "exit": # to exit
+    elif picPln == "exit": # to exit
       exit()
       check = false
     else:
@@ -227,9 +227,9 @@ def coruscant(gameState):
     svPrncs = svPrncs.lower()
     if svPrncs == "save princess": # if they want to save princess
       deathStar(gameState)
-    elif choice == "help": # for Help
+    elif svPrncs == "help": # for Help
       help()
-    elif chc == "exit": # to exit
+    elif svPrncs == "exit": # to exit
       exit()
       check = false
     else:
