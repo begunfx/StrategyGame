@@ -696,7 +696,7 @@ def hoth(gameState): #room 5
   roomDesc += "The wampa and the tauntaun are both native to hoth.\n"
   roomDesc += "A newly deceased tauntaun can be cut open to \n"
   roomDesc += "to make a great temporary refuge from the cold.\n"
-  printNow(roomDesc)
+  
     
   while check == true:
     option = "What is your choice?\n"
@@ -705,13 +705,16 @@ def hoth(gameState): #room 5
     gameState[1] == int(5)): #this planet has the plans
        option += "The plans are here!\n"
        option += "Type \"pickup plans\" to get the plans.\n"
-    
+       roomDesc += "The plans are here!\n"
+       roomDesc += "Type \"pickup plans\" to get the plans.\n"   
   
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Endor\" to jump to Endor.\n"
     option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
-        
+    
+    printNow(roomDesc)
+    
     choice = requestString(option)
     
     if choice == None:
@@ -753,7 +756,7 @@ def dagobah(gameState): #room 6
   roomDesc += "The great Jedi Yoda lives near a cave\n"
   roomDesc += "infused with the dark side of the Force\n"
   roomDesc += "which keeps Emperor Palpatine from detecting him.\n"
-  printNow(roomDesc)
+  
 
   
   while check == true:
@@ -763,13 +766,16 @@ def dagobah(gameState): #room 6
     gameState[1] == int(6)): #this planet has the plans
        option += "The plans are here!\n"
        option += "Type \"pickup plans\" to get the plans.\n"
-    
+       roomDesc += "The plans are here!\n"
+       roomDesc += "Type \"pickup plans\" to get the plans.\n" 
   
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Tatooine\" to jump to Tatooine.\n"
     option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
-        
+    
+    printNow(roomDesc)
+    
     choice = requestString(option)
     
     if choice == None:

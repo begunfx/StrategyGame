@@ -1101,7 +1101,7 @@ def hoth(gameState): #room 5
   elif gameState[2] == 0:
     printNow("You did not exit in time.  You lose.")
     return
-  printNow(roomDesc)
+ 
    
   while check == true:
     option = "What is your choice?\n"
@@ -1110,17 +1110,21 @@ def hoth(gameState): #room 5
     gameState[3] == int(5)): #this planet has the plans
        option += "The plans are here!\n"
        option += "Type \"pickup plans\" to get the plans.\n"
+       roomDesc += "The plans are here!\n"
+       roomDesc += "Type \"pickup plans\" to get the plans.\n"
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
     gameState[4] == int(5)): #death star is near
       option += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
-  
+      roomDesc += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Endor\" to jump to Endor.\n"
     option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
+    
+    printNow(roomDesc)    
         
     choice = requestString(option)
     
@@ -1148,7 +1152,7 @@ def hoth(gameState): #room 5
     elif (choice == "save princess" and 
     gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
-    gameState[4] == int(5)): #death star is near Dagobah
+    gameState[4] == int(5)): #death star is near Hoth
       deathStar(gameState)
       check = false
     elif choice == "exit":
@@ -1183,7 +1187,7 @@ def dagobah(gameState): #room 6
   elif gameState[2] == 0:
     printNow("You did not exit in time.  You lose.")
     return
-  printNow(roomDesc)
+  
   
   while check == true:
     option = ""
@@ -1192,20 +1196,24 @@ def dagobah(gameState): #room 6
     gameState[3] == int(6)): #this planet has the plans
       option += "\nThe plans are here!\n"
       option += "Type \"pickup plans\" to get the plans."
+      roomDesc += "The plans are here!\n"
+      roomDesc += "Type \"pickup plans\" to get the plans.\n"
     
     #if the player has plans, doesn't have princess, and the death star is near, tell the player
     if (gameState[0] == true and #hasPlans
     gameState[1] == false and #!hasPrincess
     gameState[4] == int(6)): #death star is near
       option += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
-  
+      roomDesc += "Type \"Save Princess\" to jump to the Death Star and rescue the princess.\n"
   
     option += "What is your choice?\n"
     option += "Type \"Coruscant\" to jump to Coruscant.\n"
     option += "Type \"Tatooine\" to jump to Tatooine.\n"
     option += "Type \"Help\" to re-display this introduction.\n"
     option += "Type \"Exit\" to quit."
-        
+    
+    printNow(roomDesc)
+            
     choice = requestString(option)
     if choice == None:
       printNow("Bye Jar Jar")
